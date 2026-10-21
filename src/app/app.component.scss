@@ -1,0 +1,162 @@
+.page {
+  min-height: 100vh;
+  padding: 40px var(--space-7);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.socials,
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+  padding-bottom: var(--space-8);
+}
+
+/* A largura disponível vira referência (cqi) para o tamanho do título */
+.intro {
+  flex: 1 1 auto;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+/*
+ * Título sempre em 3 linhas: cada linha é um bloco sem quebra.
+ * A linha mais longa ("Olá, eu sou Sávio Issa.") mede ~11,43em,
+ * então a fonte escala para caber em 100cqi, até o máximo de 72px.
+ */
+.title {
+  font-size: min(var(--text-5xl), 100cqi / 11.6);
+  line-height: 1.1;
+}
+
+.line {
+  display: block;
+  white-space: nowrap;
+}
+
+.subtitle {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-subtitle);
+  line-height: var(--leading-subtitle);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3);
+  text-align: right;
+}
+
+.item {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-weight: var(--font-weight-menu);
+  font-size: var(--text-subtitle);
+  line-height: var(--leading-subtitle);
+  text-align: inherit;
+  color: var(--text);
+  cursor: none;
+  transform-origin: right center;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--placeholder);
+    transform: scale(1.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* Chip "Em breve": ocupa o lugar do cursor sobre os itens do menu */
+.chip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--text-xs);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  transition:
+    opacity 0.15s ease,
+    transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.intro, .menu .item {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.menu .item:nth-child(1) { animation-delay: 0.10s; }
+.menu .item:nth-child(2) { animation-delay: 0.18s; }
+.menu .item:nth-child(3) { animation-delay: 0.26s; }
+.menu .item:nth-child(4) { animation-delay: 0.34s; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro, .menu .item { animation: none; }
+  .item, .chip { transition: none; }
+  .item:hover, .item:focus-visible { transform: none; }
+}
+
+@media (max-width: 900px) {
+  .page { padding: 40px var(--space-4); }
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-7);
+  }
+
+  .intro { align-self: stretch; }
+
+  .subtitle, .item { font-size: var(--text-lg); line-height: var(--leading-lg); }
+
+  .menu { align-items: flex-start; text-align: left; }
+
+  .item { transform-origin: left center; }
+}

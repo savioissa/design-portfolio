@@ -1,0 +1,43 @@
+<div class="page">
+  <header class="header">
+    <nav class="socials" aria-label="Links">
+      <app-glass-button [href]="links.cv" [external]="true">CV</app-glass-button>
+      <app-glass-button [href]="links.linkedin" [external]="true">LI</app-glass-button>
+      <app-glass-button [href]="links.github" [external]="true">GIT</app-glass-button>
+      <app-glass-button [href]="links.mail">MAIL</app-glass-button>
+    </nav>
+    <div class="controls">
+      <app-theme-switch />
+      <app-lang-select />
+    </div>
+  </header>
+
+  <main class="hero">
+    <section class="intro">
+      <h1 class="title">
+        @for (line of i18n.titleLines(); track $index) {
+          <span class="line">{{ line }} </span>
+        }
+      </h1>
+      <p class="subtitle">{{ i18n.t('subtitle') }}</p>
+    </section>
+
+    <nav class="menu" aria-label="Menu">
+      @for (key of menu; track key) {
+        <button
+          type="button"
+          class="item"
+          aria-disabled="true"
+          aria-describedby="soon-chip"
+          (mouseenter)="onPointerEnter($event)"
+          (mousemove)="onPointerMove($event)"
+          (mouseleave)="hideChip()"
+          (focus)="onFocus($event)"
+          (blur)="hideChip()"
+        >{{ i18n.t(key) }}</button>
+      }
+    </nav>
+  </main>
+</div>
+
+<span #chip id="soon-chip" class="chip" role="tooltip" [class.visible]="chipVisible()">{{ i18n.t('soon') }}</span>
