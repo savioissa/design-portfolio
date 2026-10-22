@@ -3,12 +3,12 @@ import { Lang } from '../services/i18n.service';
 
 let nextId = 0;
 
-/** Bandeiras circulares em estilo flat, com anel de borda. */
+/** Bandeiras circulares em estilo flat, com anel de borda. Tamanho por --flag-size (padrão 32px). */
 @Component({
   selector: 'app-flag-icon',
   standalone: true,
   template: `
-    <svg viewBox="0 0 32 32" [attr.width]="size()" [attr.height]="size()" aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
       <defs>
         <clipPath [attr.id]="clipId"><circle cx="16" cy="16" r="16" /></clipPath>
       </defs>
@@ -37,13 +37,18 @@ let nextId = 0;
     </svg>
   `,
   styles: `
-    :host { display: inline-flex; flex: none; border-radius: 9999px; }
-    svg { display: block; }
+    :host {
+      display: inline-flex;
+      flex: none;
+      width: var(--flag-size, 32px);
+      height: var(--flag-size, 32px);
+      border-radius: 9999px;
+    }
+    svg { display: block; width: 100%; height: 100%; }
   `,
 })
 export class FlagIconComponent {
   readonly lang = input.required<Lang>();
-  readonly size = input(32);
 
   readonly clipId = `flag-clip-${nextId++}`;
 

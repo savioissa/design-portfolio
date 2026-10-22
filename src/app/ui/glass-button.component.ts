@@ -34,6 +34,9 @@ import { Component, input } from '@angular/core';
     }
     .btn:active { transform: translateY(0); }
     .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    @media (max-width: 600px) {
+      .btn { min-width: 40px; height: 32px; padding: 0 var(--space-2); }
+    }
     @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
   `,
 })

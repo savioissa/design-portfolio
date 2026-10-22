@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { ThemeService } from '../services/theme.service';
 import { I18nService } from '../services/i18n.service';
+import { IconComponent } from './icon/icon.component';
 
 @Component({
   selector: 'app-theme-switch',
   standalone: true,
+  imports: [IconComponent],
   template: `
     <button
       type="button"
@@ -14,13 +16,8 @@ import { I18nService } from '../services/i18n.service';
       [attr.aria-label]="i18n.t('themeLabel')"
       (click)="theme.toggle()"
     >
-      <svg class="icon sun" viewBox="0 0 16 16" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
-        <circle cx="8" cy="8" r="2.6" />
-        <path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1" />
-      </svg>
-      <svg class="icon moon" viewBox="0 0 16 16" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M13.5 9.6A5.5 5.5 0 0 1 6.4 2.5a5.5 5.5 0 1 0 7.1 7.1z" />
-      </svg>
+      <app-icon class="icon sun" name="sun" />
+      <app-icon class="icon moon" name="moon" />
     </button>
   `,
   styles: `
@@ -62,6 +59,15 @@ import { I18nService } from '../services/i18n.service';
     .moon { right: 9px; }
     .switch[aria-checked='false'] .sun { color: var(--accent); }
     .switch[aria-checked='true'] .moon { color: var(--on-accent); }
+    /* Mobile: volta às medidas do design.md (62 x 32px) */
+    @media (max-width: 600px) {
+      .switch { width: 62px; height: 32px; }
+      .switch::after { top: 2px; left: 2px; width: 26px; height: 26px; }
+      .switch[aria-checked='true']::after { transform: translateX(30px); }
+      .icon { --icon-size: 16px; top: 7px; }
+      .sun { left: 7px; }
+      .moon { right: 7px; }
+    }
     @media (prefers-reduced-motion: reduce) { .switch, .switch::after, .icon { transition: none; } }
   `,
 })

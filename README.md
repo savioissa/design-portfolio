@@ -25,3 +25,16 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Ícones
+
+O projeto usa os ícones do [coolicons](https://github.com/krystonschwarze/coolicons), de Kryston Schwarze, sob a licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Eles vêm do pacote `@iconify-json/ci`.
+
+Para usar um ícone:
+
+1. Procure o nome em https://icon-sets.iconify.design/ci/
+2. Adicione o nome em `scripts/icons.config.json`
+3. Rode `npm run icons` para gerar `src/app/ui/icon/icons.generated.ts`
+4. Use no template: `<app-icon name="nome-do-icone" />`. O tamanho padrão é 20px; para mudar, defina `--icon-size` no CSS do componente pai
+
+Só os ícones listados entram no build.

@@ -152,11 +152,43 @@
     gap: var(--space-7);
   }
 
-  .intro { align-self: stretch; }
+  /* Em coluna, o flex: 1 esticaria a altura e afastaria o menu */
+  .intro { flex: none; align-self: stretch; }
 
   .subtitle, .item { font-size: var(--text-lg); line-height: var(--leading-lg); }
 
   .menu { align-items: flex-start; text-align: left; }
 
   .item { transform-origin: left center; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .page { padding: var(--space-5) var(--space-4); }
+
+  .header { flex-wrap: nowrap; gap: var(--space-2); }
+
+  .socials,
+  .controls { gap: var(--space-2); }
+
+  .hero {
+    gap: var(--space-6);
+    padding: var(--space-6) 0;
+  }
+
+  .subtitle {
+    margin-top: var(--space-2);
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+  }
+
+  /* Itens do menu com área de toque de 44px e 24px entre os textos */
+  .menu { gap: var(--space-2); }
+
+  .item { padding: var(--space-2) 0; }
+}
+
+/* Celulares estreitos (até 380px): margem lateral menor para o header caber em uma linha */
+@media (max-width: 380px) {
+  .page { padding-inline: var(--space-3); }
 }

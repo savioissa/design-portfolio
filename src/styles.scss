@@ -22,7 +22,6 @@
   --switch-thumb-bg: #FCFCFB;
   --switch-thumb-shadow: 0 0 0 1px rgba(97, 121, 153, 0.25), 0 2px 6px rgba(60, 80, 115, 0.35);
 
-  --select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%234A4E57' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
 }
 
 @mixin dark-tokens {
@@ -49,7 +48,6 @@
   --switch-thumb-bg: #E8EEFB;
   --switch-thumb-shadow: 0 0 0 1px rgba(210, 223, 255, 0.20), 0 2px 6px rgba(0, 8, 30, 0.55);
 
-  --select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23B0B3BB' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
 }
 
 :root {

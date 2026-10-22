@@ -1,11 +1,12 @@
 import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { I18nService, Lang } from '../services/i18n.service';
 import { FlagIconComponent } from './flag-icon.component';
+import { IconComponent } from './icon/icon.component';
 
 @Component({
   selector: 'app-lang-select',
   standalone: true,
-  imports: [FlagIconComponent],
+  imports: [FlagIconComponent, IconComponent],
   template: `
     <button
       type="button"
@@ -15,15 +16,16 @@ import { FlagIconComponent } from './flag-icon.component';
       [attr.aria-label]="i18n.t('langLabel')"
       (click)="open.set(!open())"
     >
-      <app-flag-icon [lang]="i18n.lang()" [size]="32" />
+      <app-flag-icon [lang]="i18n.lang()" />
       <span class="label">{{ i18n.lang() === 'pt' ? 'Pt' : 'En' }}</span>
+      <app-icon class="chevron" name="chevron-down" />
     </button>
     @if (open()) {
       <ul class="list" role="listbox">
         @for (o of options; track o.value) {
           <li role="option" [attr.aria-selected]="i18n.lang() === o.value" tabindex="0"
               (click)="choose(o.value)" (keydown.enter)="choose(o.value)">
-            <app-flag-icon [lang]="o.value" [size]="24" />
+            <app-flag-icon [lang]="o.value" />
             {{ o.label }}
           </li>
         }
@@ -38,7 +40,7 @@ import { FlagIconComponent } from './flag-icon.component';
       gap: var(--space-2);
       min-width: 104px;
       height: 40px;
-      padding: 0 var(--space-5) 0 3px;
+      padding: 0 var(--space-3) 0 3px;
       border-radius: var(--radius-full);
       border: 1px solid var(--btn-border);
       color: var(--text);
@@ -46,19 +48,22 @@ import { FlagIconComponent } from './flag-icon.component';
       font-size: var(--text-xs);
       font-weight: var(--font-weight-button);
       cursor: pointer;
-      background:
-        var(--select-chevron) no-repeat right var(--space-3) center / 20px 20px,
-        var(--btn-bg);
+      background: var(--btn-bg);
       box-shadow: var(--btn-shadow);
       transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .select:hover {
       border-color: var(--btn-border-hover);
-      background:
-        var(--select-chevron) no-repeat right var(--space-3) center / 20px 20px,
-        var(--btn-bg-hover);
+      background: var(--btn-bg-hover);
       box-shadow: var(--btn-shadow-hover);
     }
+    .chevron {
+      margin-left: auto;
+      color: var(--text-secondary);
+      transition: transform 0.2s ease;
+    }
+    .select[aria-expanded='true'] .chevron { transform: rotate(180deg); }
+    .list { --flag-size: 24px; }
     .select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .list {
       position: absolute;
@@ -84,7 +89,27 @@ import { FlagIconComponent } from './flag-icon.component';
       cursor: pointer;
     }
     li:hover, li:focus-visible, li[aria-selected='true'] { background: var(--accent-subtle); outline: none; }
-    @media (prefers-reduced-motion: reduce) { .select { transition: none; } }
+    /* Mobile: botão compacto; a bandeira já indica o idioma (o nome segue no aria-label) */
+    @media (max-width: 600px) {
+      .select {
+        --flag-size: 24px;
+        min-width: 0;
+        height: 32px;
+        gap: var(--space-1);
+        padding: 0 var(--space-2) 0 3px;
+      }
+      .label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+      .chevron { --icon-size: 16px; }
+      .list { right: auto; min-width: 88px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .select, .chevron { transition: none; } }
   `,
 })
 export class LangSelectComponent {
