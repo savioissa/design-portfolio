@@ -1,0 +1,53 @@
+name: Deploy Angular no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Build de produção
+        run: npx ng build --configuration production --base-href /
+
+      - name: Localizar pasta do build e criar 404.html
+        run: |
+          DIST_DIR=$(dirname "$(find dist -name index.html | head -n 1)")
+          echo "Pasta do build: $DIST_DIR"
+          cp "$DIST_DIR/index.html" "$DIST_DIR/404.html"
+          echo "DIST_DIR=$DIST_DIR" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.DIST_DIR }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
