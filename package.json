@@ -28,6 +28,7 @@
     "@angular/cli": "^18.2.21",
     "@angular/compiler-cli": "^18.2.0",
     "@iconify-json/ci": "^1.2.2",
+    "@iconify-json/logos": "^1.2.17",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",

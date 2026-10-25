@@ -1,6 +1,6 @@
 import { Injectable, signal, computed, effect } from '@angular/core';
 
-export type Lang = 'pt' | 'en';
+export type Lang = 'pt' | 'en' | 'es';
 const KEY = 'lang';
 
 const DICT = {
@@ -17,6 +17,18 @@ const DICT = {
     langLabel: 'Language',
     back: 'Back',
     home: 'Home',
+    education: 'Education',
+    courses: 'Courses',
+    mySkills: 'My skills',
+    interestsTitle: 'Areas of interest',
+    quote: 'We should keep learning as long as we live.',
+    quoteAuthor: 'Seneca',
+    tools: 'Tools',
+    skillsList: 'Skills',
+    present: 'present',
+    eduDegree: 'Bachelor’s in Industrial Design',
+    eduFocus: 'Focused on Product Design',
+    crestAlt: 'Coat of arms of Universidade Federal Fluminense',
     visitor: 'Visitor',
     booksTitle: 'Books I recommend',
     booksIntro: '6 books that shaped the way I work and think about products and problems',
@@ -77,6 +89,18 @@ const DICT = {
     langLabel: 'Idioma',
     back: 'Voltar',
     home: 'Início',
+    education: 'Formação',
+    courses: 'Cursos',
+    mySkills: 'Minhas habilidades',
+    interestsTitle: 'Áreas de interesse',
+    quote: 'Deve-se aprender enquanto se vive.',
+    quoteAuthor: 'Sêneca',
+    tools: 'Ferramentas',
+    skillsList: 'Habilidades',
+    present: 'atual',
+    eduDegree: 'Bacharel em Desenho Industrial',
+    eduFocus: 'Com foco em Design de Produto',
+    crestAlt: 'Brasão da Universidade Federal Fluminense',
     visitor: 'Visitante',
     booksTitle: 'Livros que indico',
     booksIntro: '6 livros que moldaram minha forma de trabalhar, pensar produto e problema',
@@ -123,7 +147,80 @@ const DICT = {
       { value: '+5', label: 'Anos de experiência com design' },
     ],
   },
+  es: {
+    title: ['Hola, soy Sávio Issa.', 'Product designer en', 'IClass Sistemas.'],
+    subtitle: 'De Niterói, Río de Janeiro - Brasil',
+    soon: 'Próximamente',
+    about: 'Sobre mí',
+    skills: 'Habilidades y formación',
+    solve: 'Cómo resuelvo problemas',
+    projects: 'Proyectos',
+    themeLabel: 'Modo oscuro',
+    langLabel: 'Idioma',
+    back: 'Volver',
+    home: 'Inicio',
+    education: 'Formación',
+    courses: 'Cursos',
+    mySkills: 'Mis habilidades',
+    interestsTitle: 'Áreas de interés',
+    quote: 'Se debe aprender mientras se vive.',
+    quoteAuthor: 'Séneca',
+    tools: 'Herramientas',
+    skillsList: 'Habilidades',
+    present: 'actualidad',
+    eduDegree: 'Licenciatura en Diseño Industrial',
+    eduFocus: 'Con enfoque en Diseño de Producto',
+    crestAlt: 'Escudo de la Universidade Federal Fluminense',
+    visitor: 'Visitante',
+    booksTitle: 'Libros que recomiendo',
+    booksIntro: '6 libros que moldearon mi forma de trabajar y de pensar productos y problemas',
+    close: 'Cerrar',
+    buy: 'Dónde comprar',
+    portraitsLabel: 'Tres retratos de Sávio: un dibujo a lápiz, una foto y un avatar en pixel art',
+    aboutText: [
+      'Soy Sávio Issa, diseñador de producto graduado en Diseño Industrial por la Universidade Federal Fluminense, y actualmente trabajo en un producto B2B. Me mueven la curiosidad y la pasión por crear, las ganas de entender cómo funcionan las cosas, descubrir nuevas posibilidades y transformar ideas en experiencias que contribuyan a un mundo mejor.',
+      'Nunca me gustó limitarme a una sola etiqueta dentro del diseño. A lo largo de mi trayectoria, exploré distintos campos, hardware y software, diseño visual, prototipado, realidad aumentada, datos, siempre buscando nuevas formas de materializar ideas. Me gusta aprender haciendo, experimentar y construir. Por eso me enamoré del diseño: por la posibilidad de transformar la curiosidad en creación, aprendiendo en el camino.',
+    ],
+    timelineTitle: 'Trayectoria y experiencia',
+    timeline: [
+      {
+        period: '2023 – actualidad',
+        title: 'Analista de UX Junior',
+        org: 'IClass · software B2B (FSM)',
+        logo: 'logos/iclass.png',
+        text: 'Empecé como pasante de UX y fui contratado como Analista de UX Junior en octubre de 2025.',
+        tag: '',
+        current: true,
+      },
+      {
+        period: '2022 – 2023',
+        title: 'Asesor de Calidad',
+        org: 'Papo Design · empresa júnior',
+        logo: 'logos/papo-design.png',
+        text: 'Responsable de los procesos internos y de la estandarización de las entregas de proyectos de diseño.',
+        tag: '',
+        current: false,
+      },
+      {
+        period: '2020 – 2022',
+        title: 'Desarrollador de juegos móviles',
+        org: 'Paranapanema Games',
+        logo: 'logos/paranapanema-games.jpg',
+        text: 'Desarrollador independiente de juegos móviles con más de 10 mil descargas en Play Store.',
+        tag: '',
+        current: false,
+      },
+    ],
+    statsLabel: 'Destacados',
+    stats: [
+      { value: '+3', label: 'Años de experiencia en diseño de productos digitales' },
+      { value: '+5', label: 'Años de experiencia en diseño' },
+    ],
+  },
 } as const;
+
+/** Atributo lang do <html> para cada idioma (leitores de tela e hifenização usam) */
+const HTML_LANG: Record<Lang, string> = { pt: 'pt-BR', en: 'en', es: 'es' };
 
 export type DictKey = Exclude<keyof (typeof DICT)['en'], 'title' | 'aboutText' | 'timeline' | 'stats'>;
 
@@ -138,7 +235,7 @@ export class I18nService {
 
   constructor() {
     effect(() => {
-      document.documentElement.lang = this.lang() === 'pt' ? 'pt-BR' : 'en';
+      document.documentElement.lang = HTML_LANG[this.lang()];
     });
   }
 
@@ -154,7 +251,7 @@ export class I18nService {
   private initial(): Lang {
     try {
       const saved = localStorage.getItem(KEY);
-      if (saved === 'pt' || saved === 'en') return saved;
+      if (saved === 'pt' || saved === 'en' || saved === 'es') return saved;
     } catch {}
     return 'pt';
   }

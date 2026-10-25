@@ -21,6 +21,16 @@ let nextId = 0;
           <path d="M10.6 14.7Q16.2 12.4 21.5 16.6" fill="none" stroke="#FCFCFB" stroke-width="0.9" stroke-linecap="round" />
         </g>
         <circle cx="16" cy="16" r="15.5" fill="none" stroke="#4E8C24" stroke-width="1" />
+      } @else if (lang() === 'es') {
+        <!-- Espanha: faixas vermelho/amarelo/vermelho (1:2:1) e o brasão simplificado em escudo + coroa -->
+        <g [attr.clip-path]="'url(#' + clipId + ')'">
+          <rect width="32" height="32" fill="#E8283A" />
+          <rect y="8" width="32" height="16" fill="#FFC81F" />
+          <rect x="8.4" y="11.2" width="5" height="1.2" rx="0.6" fill="#B8101F" />
+          <path d="M8.4 13.2h5v3.6a2.5 2.5 0 0 1-5 0Z" fill="#B8101F" />
+          <rect x="9.9" y="14.3" width="2" height="2" rx="0.4" fill="#FFC81F" />
+        </g>
+        <circle cx="16" cy="16" r="15.5" fill="none" stroke="#C41E2F" stroke-width="1" />
       } @else {
         <g [attr.clip-path]="'url(#' + clipId + ')'">
           <rect width="32" height="32" fill="#FCFCFB" />

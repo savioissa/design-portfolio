@@ -1,0 +1,281 @@
+/* Ocupa o espaço abaixo do header dentro de .page (mesma base da página "Sobre mim") */
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.skills {
+  flex: 1;
+  padding-top: var(--space-7);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-3xl);
+}
+
+.block { margin-top: var(--space-7); }
+
+/* Graduação à esquerda, cursos à direita */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-7);
+}
+
+/* Graduação: brasão em 3D à esquerda, texto à direita */
+.degree {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Cursos: colados à borda direita e alinhados à direita (como os indicadores de "Sobre mim"),
+   com a miniatura do lado de fora */
+.courses {
+  justify-self: end;
+  width: min(100%, 26rem);
+  text-align: right;
+}
+
+.courses-title {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--font-weight-button);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.course-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+
+  & + & { border-top: 1px solid var(--border); }
+}
+
+/* Miniaturas com o mesmo filtro #clay do brasão: viram "pastilhas" 3D com relevo e brilho */
+.thumb {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  filter: url(#clay) drop-shadow(0 6px 8px rgba(13, 40, 90, 0.25));
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &.contain { object-fit: contain; padding: 4px; background: var(--accent-subtle); }
+}
+.course:hover .thumb { transform: translateY(-3px) rotate(-4deg); }
+
+.course-name {
+  margin: 0;
+  font-weight: var(--font-weight-button);
+}
+
+.course-meta {
+  margin: 0;
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--text-secondary);
+}
+
+/* Palco do brasão: sem fundo, no formato do brasão (4:5) para o texto ficar perto; 300×375 mantém o brasão
+   com ~290px de altura. --rx/--ry vêm do mouse (skills.component.ts) */
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  perspective: 700px;
+
+  /* Sombra no "chão", que encolhe quando o brasão sobe */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 11%;
+    width: 46%;
+    height: 7%;
+    border-radius: 50%;
+    background: rgba(13, 40, 90, 0.22);
+    filter: blur(6px);
+    animation: shadow 5s ease-in-out infinite;
+  }
+}
+
+.defs { position: absolute; }
+
+/* Volume estilo Airbnb: filtro #clay (no HTML) dá relevo e brilho, mais uma sombra difusa de contato.
+   Posição absoluta porque altura em % dentro de uma célula de grid de altura automática não resolve */
+.crest {
+  position: absolute;
+  z-index: 1;
+  inset: 11% 0;
+  width: auto;
+  height: 78%;
+  margin: auto;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  filter: url(#clay) drop-shadow(0 14px 14px rgba(13, 40, 90, 0.28));
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { translate: 0 -8px; }
+}
+
+@keyframes shadow {
+  50% { scale: 0.85; opacity: 0.7; }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--font-weight-button);
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.org { text-transform: uppercase; }
+
+.sep { color: var(--border); }
+
+.degree-title {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-2xl);
+}
+
+.focus {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
+  color: var(--text-secondary);
+}
+
+.title, .block {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.block { animation-delay: 0.08s; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title, .block, .crest, .stage::after { animation: none; }
+  .crest { transition: none; }
+}
+
+/* Telas médias: cursos descem para baixo da graduação */
+@media (max-width: 1200px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  /* Empilhado: cursos voltam a alinhar à esquerda, abaixo da graduação */
+  .courses { justify-self: stretch; width: auto; text-align: left; }
+
+  .course { flex-direction: row; }
+}
+
+@media (max-width: 900px) {
+  .skills { padding-top: var(--space-6); }
+
+  .title {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-2xl);
+  }
+
+  .block { margin-top: var(--space-6); }
+}
+
+/* Mobile: brasão menor, sempre à esquerda do texto */
+@media (max-width: 600px) {
+  .skills { padding-top: var(--space-5); }
+
+  .title {
+    font-size: var(--text-xl);
+    line-height: var(--leading-xl);
+  }
+
+  .degree {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .split { gap: var(--space-5); }
+
+  /* Período e universidade em linhas próprias, sem o "|" sobrando no fim da primeira */
+  .meta { flex-direction: column; gap: 0; }
+
+  .sep { display: none; }
+
+  .degree-title {
+    font-size: var(--text-xl);
+    line-height: var(--leading-xl);
+  }
+
+  .focus {
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+  }
+
+}
+
+/* Mais respiro antes de "Áreas de interesse" e ainda mais antes da citação (vem depois de .block para valer) */
+.interests { margin-top: var(--space-8); }
+/* Citação que fecha a página: frase centralizada e o autor alinhado à direita dela, em cinza.
+   O bloco encolhe até a largura da frase (fit-content) e, se ela quebrar, as primeiras linhas ocupam
+   a largura toda: nos dois casos a borda direita do bloco coincide com a da frase */
+.quote {
+  width: fit-content;
+  max-width: 40rem;
+  margin: var(--space-9) auto 0;
+
+  blockquote { margin: 0; }
+
+  p {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-2xl);
+    text-align: center;
+    text-wrap: pretty;
+  }
+  figcaption {
+    margin-top: var(--space-3);
+    text-align: right;
+    color: var(--text-secondary);
+  }
+}
+
+@media (max-width: 900px) {
+  .interests { margin-top: var(--space-7); }
+  .quote { margin-top: var(--space-8); }
+}
+
+@media (max-width: 600px) {
+  .quote p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-lg);
+  }
+}

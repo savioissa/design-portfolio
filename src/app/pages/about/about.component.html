@@ -11,7 +11,7 @@
   </div>
 
   <section class="block" aria-labelledby="timeline-title">
-    <h2 id="timeline-title" class="timeline-title">{{ i18n.t('timelineTitle') }}</h2>
+    <h2 id="timeline-title" class="section-title">{{ i18n.t('timelineTitle') }}</h2>
 
     <div class="journey">
       <div class="timeline">
@@ -45,7 +45,7 @@
   </section>
 
   <section class="block" aria-labelledby="books-title">
-    <h2 id="books-title" class="timeline-title">{{ i18n.t('booksTitle') }}</h2>
+    <h2 id="books-title" class="section-title">{{ i18n.t('booksTitle') }}</h2>
     <p class="lead">{{ i18n.t('booksIntro') }}</p>
     <app-bookshelf />
   </section>
@@ -55,7 +55,7 @@
       <app-icon name="arrow-left-md" />
       {{ i18n.t('home') }}
     </app-glass-button>
-    <app-glass-button [disabled]="true" appSoon>
+    <app-glass-button route="/habilidades-e-formacao">
       {{ i18n.t('skills') }}
       <app-icon name="arrow-right-md" />
     </app-glass-button>

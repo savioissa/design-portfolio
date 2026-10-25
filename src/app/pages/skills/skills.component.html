@@ -1,0 +1,95 @@
+<main class="skills">
+  <h1 class="title">{{ i18n.t('skills') }}</h1>
+
+  <section class="block" [attr.aria-label]="i18n.t('education')">
+    <div class="split">
+      <article class="degree" (pointermove)="onMove($event)" (pointerleave)="resetTilt()">
+        <!-- Filtro "massinha" do brasão: relevo a partir da silhueta e dos tons da imagem,
+             iluminação suave vinda de cima à esquerda e um brilho especular, como os ícones 3D do Airbnb -->
+        <svg class="defs" width="0" height="0" aria-hidden="true">
+          <filter id="clay" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+            <feColorMatrix in="SourceGraphic" type="saturate" values="1.25" result="vivid" />
+            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="edges" />
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.3 0.59 0.11 0 0" result="lum" />
+            <feComposite in="lum" in2="SourceAlpha" operator="in" result="lumIn" />
+            <feGaussianBlur in="lumIn" stdDeviation="1.5" result="details" />
+            <feComposite in="edges" in2="details" operator="arithmetic" k2="0.75" k3="0.25" result="bump" />
+            <feDiffuseLighting in="bump" surfaceScale="5" diffuseConstant="1.15" lighting-color="#fff" result="diffuse">
+              <feDistantLight azimuth="225" elevation="55" />
+            </feDiffuseLighting>
+            <feBlend in="vivid" in2="diffuse" mode="multiply" result="shaded" />
+            <feSpecularLighting in="bump" surfaceScale="5" specularConstant="0.8" specularExponent="18" lighting-color="#fff" result="gloss">
+              <feDistantLight azimuth="225" elevation="45" />
+            </feSpecularLighting>
+            <feComposite in="shaded" in2="gloss" operator="arithmetic" k2="1" k3="0.5" result="lit" />
+            <feComposite in="lit" in2="SourceAlpha" operator="in" />
+          </filter>
+        </svg>
+
+        <div class="stage" [style.--rx.deg]="tilt().x" [style.--ry.deg]="tilt().y">
+          <img class="crest" src="logos/uff-brasao.png" [alt]="i18n.t('crestAlt')" width="444" height="500" />
+        </div>
+
+        <div class="info">
+          <p class="meta">
+            <span>2021 – 2026</span>
+            <span class="sep" aria-hidden="true">|</span>
+            <span class="org">Universidade Federal Fluminense</span>
+          </p>
+          <h2 class="degree-title">{{ i18n.t('eduDegree') }}</h2>
+          <p class="focus">{{ i18n.t('eduFocus') }}</p>
+        </div>
+      </article>
+
+      <div class="courses">
+        <h2 id="courses-title" class="courses-title">{{ i18n.t('courses') }}</h2>
+        <ul class="course-list" aria-labelledby="courses-title">
+          @for (course of courses; track course.slug) {
+            <li class="course">
+              <img
+                class="thumb"
+                [class.contain]="course.contain"
+                [src]="'courses/' + course.slug + '.png'"
+                alt=""
+                width="48"
+                height="48"
+                loading="lazy"
+              />
+              <div class="course-info">
+                <p class="course-name">{{ course.title }}</p>
+                <p class="course-meta">
+                  {{ course.provider }}
+                  @if (course.start) {
+                    · {{ course.start }}{{ course.current ? ' – ' + i18n.t('present') : '' }}
+                  }
+                </p>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <app-what-i-do class="block" />
+
+  <app-tag-marquee class="block interests" />
+
+  <figure class="block quote">
+    <blockquote>
+      <p>“{{ i18n.t('quote') }}”</p>
+    </blockquote>
+    <figcaption>— {{ i18n.t('quoteAuthor') }}</figcaption>
+  </figure>
+
+  <nav class="pager" aria-label="Menu">
+    <app-glass-button route="/">
+      <app-icon name="arrow-left-md" />
+      {{ i18n.t('home') }}
+    </app-glass-button>
+    <app-glass-button [disabled]="true" appSoon>
+      {{ i18n.t('solve') }}
+      <app-icon name="arrow-right-md" />
+    </app-glass-button>
+  </nav>
+</main>

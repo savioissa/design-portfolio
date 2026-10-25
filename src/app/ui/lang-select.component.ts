@@ -17,7 +17,7 @@ import { IconComponent } from './icon/icon.component';
       (click)="open.set(!open())"
     >
       <app-flag-icon [lang]="i18n.lang()" />
-      <span class="label">{{ i18n.lang() === 'pt' ? 'Pt' : 'En' }}</span>
+      <span class="label">{{ labelOf(i18n.lang()) }}</span>
       <app-icon class="chevron" name="chevron-down" />
     </button>
     @if (open()) {
@@ -119,7 +119,12 @@ export class LangSelectComponent {
   readonly options: { value: Lang; label: string }[] = [
     { value: 'pt', label: 'Pt' },
     { value: 'en', label: 'En' },
+    { value: 'es', label: 'Es' },
   ];
+
+  labelOf(lang: Lang): string {
+    return this.options.find((o) => o.value === lang)?.label ?? '';
+  }
 
   choose(lang: Lang): void {
     this.i18n.set(lang);

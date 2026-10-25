@@ -1,6 +1,8 @@
 .page {
   min-height: 100vh;
-  padding: 40px var(--space-7);
+  /* Margem lateral da página; seções que vão de ponta a ponta da tela (ex.: faixa de tags) a anulam */
+  --page-gutter: var(--space-7);
+  padding: 40px var(--page-gutter);
   display: flex;
   flex-direction: column;
 }
@@ -21,12 +23,12 @@
 }
 
 @media (max-width: 900px) {
-  .page { padding: 40px var(--space-4); }
+  .page { --page-gutter: var(--space-4); }
 }
 
 /* Mobile */
 @media (max-width: 600px) {
-  .page { padding: var(--space-5) var(--space-4); }
+  .page { padding-block: var(--space-5); }
 
   .header { flex-wrap: nowrap; gap: var(--space-2); }
 
@@ -36,5 +38,5 @@
 
 /* Celulares estreitos (até 380px): margem lateral menor para o header caber em uma linha */
 @media (max-width: 380px) {
-  .page { padding-inline: var(--space-3); }
+  .page { --page-gutter: var(--space-3); }
 }

@@ -177,3 +177,32 @@ h1, h2, h3, h4 {
 @media (prefers-reduced-motion: reduce) {
   .soon-chip { transition: none; }
 }
+
+/* Título de seção (h2) das páginas internas: "Trajetória e experiência", "Livros que indico", "Minhas habilidades" */
+.section-title {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  margin-bottom: var(--space-5);
+}
+
+@media (max-width: 600px) {
+  .section-title {
+    font-size: var(--text-lg);
+    line-height: var(--leading-lg);
+    margin-bottom: var(--space-4);
+  }
+}
+
+/* Navegação no fim das páginas internas: início à esquerda, próxima seção à direita (desce inteira se não couber) */
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.pager > * + * { margin-left: auto; }
+
+@media (max-width: 600px) {
+  .pager { margin-top: var(--space-6); }
+}

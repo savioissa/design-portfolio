@@ -20,7 +20,7 @@ export class HomeComponent {
   readonly i18n = inject(I18nService);
   readonly menu: MenuItem[] = [
     { key: 'about', route: '/sobre-mim' },
-    { key: 'skills' },
+    { key: 'skills', route: '/habilidades-e-formacao' },
     { key: 'solve' },
     { key: 'projects' },
   ];

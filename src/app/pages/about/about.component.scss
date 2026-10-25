@@ -57,13 +57,6 @@
   gap: var(--space-6);
 }
 
-/* Linha do tempo */
-.timeline-title {
-  font-size: var(--text-xl);
-  line-height: var(--leading-xl);
-  margin-bottom: var(--space-5);
-}
-
 /* Descrição logo abaixo de um título de seção */
 h2:has(+ .lead) { margin-bottom: var(--space-2); }
 
@@ -72,6 +65,7 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
   color: var(--text-secondary);
 }
 
+/* Linha do tempo */
 .events {
   margin: 0;
   padding: 0;
@@ -207,15 +201,6 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
   .title, .text, .block { animation: none; }
 }
 
-/* Navegação no fim da página: início à esquerda, próxima seção à direita (desce inteira se não couber) */
-.pager {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-8);
-}
-.pager > * + * { margin-left: auto; }
-
 /* Telas médias: retratos e indicadores descem para baixo do texto */
 @media (max-width: 900px) {
   .about { padding-top: var(--space-6); }
@@ -270,15 +255,9 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
     line-height: var(--leading-lg);
   }
 
-  .block, .pager { margin-top: var(--space-6); }
+  .block { margin-top: var(--space-6); }
 
   .journey { gap: var(--space-4); }
-
-  .timeline-title {
-    font-size: var(--text-lg);
-    line-height: var(--leading-lg);
-    margin-bottom: var(--space-4);
-  }
 
   .role {
     font-size: var(--text-base);
