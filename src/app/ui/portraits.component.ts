@@ -89,9 +89,9 @@ const NEAR = 48;
     .pixel { left: 205px; top: 190px; width: 150px; height: 150px; animation-delay: -3s; background: #F0EEE2; }
     .pixel img {
       position: absolute;
-      left: 9%;
-      top: 6%;
-      width: 82%;
+      left: 15%;
+      top: 10%;
+      width: 70%;
       height: auto;
       clip-path: inset(0.5%);
     }

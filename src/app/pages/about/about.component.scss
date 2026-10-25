@@ -92,8 +92,7 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
     top: calc(var(--dot) + 8px);
     bottom: 8px;
     width: 2px;
-    border-radius: 1px;
-    background: var(--accent-border);
+    background: var(--border);
   }
 
   &:last-child { padding-bottom: 0; }
@@ -107,7 +106,7 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
   width: var(--dot);
   height: var(--dot);
   border-radius: var(--radius-full);
-  border: 2px solid var(--accent-border);
+  border: 2px solid var(--border);
   background: #fff;
   object-fit: cover;
   box-sizing: border-box;
@@ -172,7 +171,7 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
   & + & {
     margin-top: var(--space-4);
     padding-top: var(--space-4);
-    border-top: 1px solid var(--accent-border);
+    border-top: 1px solid var(--border);
   }
 }
 
@@ -208,13 +207,14 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
   .title, .text, .block { animation: none; }
 }
 
-/* Navegação no fim da página: início à esquerda, próxima seção à direita */
+/* Navegação no fim da página: início à esquerda, próxima seção à direita (desce inteira se não couber) */
 .pager {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   gap: var(--space-3);
   margin-top: var(--space-8);
 }
+.pager > * + * { margin-left: auto; }
 
 /* Telas médias: retratos e indicadores descem para baixo do texto */
 @media (max-width: 900px) {

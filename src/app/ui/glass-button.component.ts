@@ -38,6 +38,7 @@ import { RouterLink } from '@angular/router';
       font-weight: var(--font-weight-button);
       line-height: var(--leading-xs);
       text-decoration: none;
+      white-space: nowrap;
       cursor: pointer;
       transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
