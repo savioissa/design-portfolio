@@ -1,15 +1,30 @@
 import { Component, input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
+/** Com `route`, navega dentro do app (routerLink); senão, usa `href`. Com `disabled`, não navega (use junto com appSoon). */
 @Component({
   selector: 'app-glass-button',
   standalone: true,
-  template: `<a class="btn" [href]="href()" [attr.target]="external() ? '_blank' : null" [attr.rel]="external() ? 'noopener noreferrer' : null"><ng-content /></a>`,
+  imports: [RouterLink, NgTemplateOutlet],
+  template: `
+    <ng-template #content><ng-content /></ng-template>
+    @if (disabled()) {
+      <span class="btn" tabindex="0" role="link" aria-disabled="true"><ng-container [ngTemplateOutlet]="content" /></span>
+    } @else if (route()) {
+      <a class="btn" [routerLink]="route()"><ng-container [ngTemplateOutlet]="content" /></a>
+    } @else {
+      <a class="btn" [href]="href()" [attr.target]="external() ? '_blank' : null" [attr.rel]="external() ? 'noopener noreferrer' : null"><ng-container [ngTemplateOutlet]="content" /></a>
+    }
+  `,
   styles: `
     :host { display: inline-flex; }
     .btn {
+      --icon-size: 16px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: var(--space-1);
       min-width: 52px;
       height: 40px;
       padding: 0 var(--space-3);
@@ -34,6 +49,7 @@ import { Component, input } from '@angular/core';
     }
     .btn:active { transform: translateY(0); }
     .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    span.btn { cursor: inherit; }
     @media (max-width: 600px) {
       .btn { min-width: 40px; height: 32px; padding: 0 var(--space-2); }
     }
@@ -42,5 +58,7 @@ import { Component, input } from '@angular/core';
 })
 export class GlassButtonComponent {
   readonly href = input('#');
+  readonly route = input<string | null>(null);
   readonly external = input(false);
+  readonly disabled = input(false);
 }

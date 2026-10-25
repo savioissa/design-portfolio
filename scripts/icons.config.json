@@ -1,4 +1,4 @@
 {
   "$comment": "Ícones do coolicons (https://github.com/krystonschwarze/coolicons) usados no projeto. Depois de editar, rode: npm run icons",
-  "icons": ["sun", "moon", "chevron-down"]
+  "icons": ["sun", "moon", "chevron-down", "arrow-left-md", "arrow-right-md", "close-md", "external-link"]
 }

@@ -1,0 +1,102 @@
+import type { Lang } from '../services/i18n.service';
+
+/*
+ * Livros da estante em "Sobre mim".
+ * A capa é lida de public/books/<slug>.jpg; se o arquivo não existir, a lombada fica só com o título.
+ * `why` e `link` são opcionais: em branco, somem do card.
+ * `color`/`ink` são o fundo e o texto da lombada; `width`/`height` variam para a estante parecer real.
+ */
+export interface Book {
+  slug: string;
+  title: Record<Lang, string>;
+  author: string;
+  why: Record<Lang, string>;
+  link: string;
+  color: string;
+  ink: string;
+  width: number;
+  height: number;
+}
+
+export const BOOKS: Book[] = [
+  {
+    slug: 'o-ato-criativo',
+    title: { pt: 'O ato criativo', en: 'The Creative Act' },
+    author: 'Rick Rubin',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#D9D9D9', ink: '#2F2F2F', width: 112, height: 460,
+  },
+  {
+    slug: 'comece-pelo-porque',
+    title: { pt: 'Comece pelo porquê', en: 'Start with Why' },
+    author: 'Simon Sinek',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#E5484D', ink: '#FFFFFF', width: 88, height: 430,
+  },
+  {
+    slug: 'o-design-do-dia-a-dia',
+    title: { pt: 'O design do dia a dia', en: 'The Design of Everyday Things' },
+    author: 'Don Norman',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#FFD84D', ink: '#3D3000', width: 136, height: 460,
+  },
+  {
+    slug: 'nao-me-faca-pensar',
+    title: { pt: 'Não me faça pensar', en: 'Don’t Make Me Think' },
+    author: 'Steve Krug',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#E5484D', ink: '#FFFFFF', width: 112, height: 430,
+  },
+  {
+    slug: 'ultraaprendizado',
+    title: { pt: 'Ultraaprendizado', en: 'Ultralearning' },
+    author: 'Scott H. Young',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#141414', ink: '#4ADE80', width: 88, height: 460,
+  },
+  {
+    slug: 'design-como-storytelling',
+    title: { pt: 'Design como storytelling', en: 'Design Is Storytelling' },
+    author: 'Ellen Lupton',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#141414', ink: '#FFFFFF', width: 112, height: 430,
+  },
+  {
+    slug: 'a-startup-enxuta',
+    title: { pt: 'A startup enxuta', en: 'The Lean Startup' },
+    author: 'Eric Ries',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#A8D8FF', ink: '#0B3A66', width: 88, height: 390,
+  },
+  {
+    slug: 'o-teste-da-mae',
+    title: { pt: 'O teste da mãe', en: 'The Mom Test' },
+    author: 'Rob Fitzpatrick',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#FFB3D1', ink: '#7A1240', width: 88, height: 400,
+  },
+  {
+    slug: 'design-centrado-no-usuario',
+    title: { pt: 'Design centrado no usuário', en: 'User-Centered Design' },
+    author: 'Travis Lowdermilk',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#8B5CF6', ink: '#FFFFFF', width: 112, height: 460,
+  },
+  {
+    slug: 'estrategia-de-ux',
+    title: { pt: 'Estratégia de UX', en: 'UX Strategy' },
+    author: 'Jaime Levy',
+    why: { pt: '', en: '' },
+    link: '',
+    color: '#FFFFFF', ink: '#1F1F1F', width: 112, height: 430,
+  },
+];

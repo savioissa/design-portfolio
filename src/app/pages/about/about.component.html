@@ -1,0 +1,63 @@
+<main class="about">
+  <div class="intro">
+    <article class="content">
+      <h1 class="title">{{ i18n.t('about') }}</h1>
+      @for (paragraph of i18n.aboutText(); track $index) {
+        <p class="text">{{ paragraph }}</p>
+      }
+    </article>
+
+    <app-portraits class="portraits" />
+  </div>
+
+  <section class="block" aria-labelledby="timeline-title">
+    <h2 id="timeline-title" class="timeline-title">{{ i18n.t('timelineTitle') }}</h2>
+
+    <div class="journey">
+      <div class="timeline">
+        <ol class="events">
+          @for (event of i18n.timeline(); track $index) {
+            <li class="event" [class.current]="event.current">
+              <img class="logo" [src]="event.logo" alt="" width="48" height="48" loading="lazy" />
+              <p class="period">
+                {{ event.period }}
+                @if (event.tag) {
+                  <span class="tag">{{ event.tag }}</span>
+                }
+              </p>
+              <h3 class="role">{{ event.title }}</h3>
+              <p class="org">{{ event.org }}</p>
+              <p class="desc">{{ event.text }}</p>
+            </li>
+          }
+        </ol>
+      </div>
+
+      <dl class="stats" [attr.aria-label]="i18n.t('statsLabel')">
+        @for (stat of i18n.stats(); track $index) {
+          <div class="stat">
+            <dt class="stat-label">{{ stat.label }}</dt>
+            <dd class="stat-value">{{ stat.value }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="books-title">
+    <h2 id="books-title" class="timeline-title">{{ i18n.t('booksTitle') }}</h2>
+    <p class="lead">{{ i18n.t('booksIntro') }}</p>
+    <app-bookshelf />
+  </section>
+
+  <nav class="pager" aria-label="Menu">
+    <app-glass-button route="/">
+      <app-icon name="arrow-left-md" />
+      {{ i18n.t('home') }}
+    </app-glass-button>
+    <app-glass-button [disabled]="true" appSoon>
+      {{ i18n.t('skills') }}
+      <app-icon name="arrow-right-md" />
+    </app-glass-button>
+  </nav>
+</main>

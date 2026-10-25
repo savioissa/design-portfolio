@@ -142,3 +142,36 @@ h1, h2, h3, h4 {
   font-weight: var(--font-weight-serif);
   margin: 0;
 }
+
+/* Chip "Em breve": ocupa o lugar do cursor sobre itens com appSoon (src/app/ui/soon.directive.ts) */
+.soon-chip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--text-xs);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  transition:
+    opacity 0.15s ease,
+    transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .soon-chip { transition: none; }
+}

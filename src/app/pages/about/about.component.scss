@@ -1,0 +1,292 @@
+/* Ocupa o espaço abaixo do header dentro de .page */
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.about {
+  flex: 1;
+  padding-top: var(--space-7);
+}
+
+/* Texto "Sobre mim" e retratos lado a lado; os retratos ficam centralizados na altura do texto */
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.portraits { flex: none; }
+
+@media (max-width: 1200px) {
+  .portraits { --portraits-scale: 0.85; }
+}
+
+/* Largura de leitura confortável (~70 caracteres por linha) */
+.content,
+.timeline {
+  flex: 0 1 44rem;
+  min-width: 0;
+  max-width: 44rem;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-3xl);
+  margin-bottom: var(--space-5);
+}
+
+.text {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: var(--leading-xl);
+  color: var(--text-secondary);
+
+  & + & { margin-top: var(--space-4); }
+}
+
+.block { margin-top: var(--space-7); }
+
+/* Abaixo do título: linha do tempo à esquerda e indicadores à direita */
+.journey {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+/* Linha do tempo */
+.timeline-title {
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  margin-bottom: var(--space-5);
+}
+
+/* Descrição logo abaixo de um título de seção */
+h2:has(+ .lead) { margin-bottom: var(--space-2); }
+
+.lead {
+  margin: 0 0 var(--space-5);
+  color: var(--text-secondary);
+}
+
+.events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada item mostra o logo do local num círculo e desenha o trecho de linha até o próximo (::before) */
+.event {
+  --dot: 48px;
+  position: relative;
+  min-height: var(--dot);
+  padding: 0 0 var(--space-5) calc(var(--dot) + var(--space-4));
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--dot) / 2 - 1px);
+    top: calc(var(--dot) + 8px);
+    bottom: 8px;
+    width: 2px;
+    border-radius: 1px;
+    background: var(--accent-border);
+  }
+
+  &:last-child { padding-bottom: 0; }
+  &:last-child::before { display: none; }
+}
+
+.logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--accent-border);
+  background: #fff;
+  object-fit: cover;
+  box-sizing: border-box;
+
+  .current & {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-subtle);
+  }
+}
+
+.period {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  font-weight: var(--font-weight-button);
+  color: var(--accent);
+}
+
+.tag {
+  padding: 0 var(--space-2);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-full);
+  background: var(--accent-subtle);
+  font-weight: var(--font-weight-menu);
+}
+
+.role {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
+  font-weight: var(--font-weight-button);
+}
+
+.org {
+  margin: 0;
+}
+
+/* ~8 palavras por linha (média de ~5,5 caracteres por palavra com o espaço) */
+.desc {
+  max-width: 44ch;
+  margin: var(--space-1) 0 0;
+  color: var(--text-secondary);
+}
+
+/* Indicadores: número grande acima do rótulo, separados por linhas */
+.stats {
+  flex: 0 1 18rem;
+  min-width: 0;
+  margin: 0;
+  text-align: right;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  & + & {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--accent-border);
+  }
+}
+
+/* No HTML o rótulo vem antes (dt/dd); visualmente o número aparece primeiro */
+.stat-value {
+  order: -1;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-4xl);
+  line-height: 1.1;
+  font-weight: var(--font-weight-button);
+  color: var(--text);
+}
+
+.stat-label {
+  max-width: 14rem;
+  color: var(--text-secondary);
+}
+
+.title, .text, .block {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.text { animation-delay: 0.08s; }
+.text + .text { animation-delay: 0.16s; }
+.block { animation-delay: 0.24s; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title, .text, .block { animation: none; }
+}
+
+/* Navegação no fim da página: início à esquerda, próxima seção à direita */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+/* Telas médias: retratos e indicadores descem para baixo do texto */
+@media (max-width: 900px) {
+  .about { padding-top: var(--space-6); }
+
+  .intro {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Em coluna o flex-basis de 44rem viraria altura e abriria um vão enorme */
+  .content, .timeline, .stats { flex: none; }
+
+  .portraits { --portraits-scale: 0.8; align-self: center; }
+
+  .title {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-2xl);
+  }
+
+  /* Indicadores descem para baixo da trajetória, alinhados à esquerda */
+  .journey {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-5);
+  }
+
+  .block { margin-top: var(--space-6); }
+
+  .stats { text-align: left; }
+
+  .stat { align-items: flex-start; }
+
+  .stat-value { font-size: var(--text-3xl); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .about { padding-top: var(--space-5); }
+
+  .intro { gap: var(--space-5); }
+
+  .portraits { --portraits-scale: 0.7; }
+
+  .title {
+    font-size: var(--text-xl);
+    line-height: var(--leading-xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .text {
+    font-size: var(--text-base);
+    line-height: var(--leading-lg);
+  }
+
+  .block, .pager { margin-top: var(--space-6); }
+
+  .journey { gap: var(--space-4); }
+
+  .timeline-title {
+    font-size: var(--text-lg);
+    line-height: var(--leading-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .role {
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+  }
+
+  .event {
+    --dot: 40px;
+    padding-left: calc(var(--dot) + var(--space-3));
+  }
+}
