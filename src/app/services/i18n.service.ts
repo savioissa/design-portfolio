@@ -13,12 +13,16 @@ const DICT = {
     skills: 'Skills and education',
     solve: 'How I solve problems',
     projects: 'Projects',
-    themeLabel: 'Dark mode',
+    themeLabel: 'Theme',
+    lightMode: 'Light mode',
+    darkMode: 'Dark mode',
     langLabel: 'Language',
-    back: 'Back',
     home: 'Home',
     education: 'Education',
     courses: 'Courses',
+    certificates: 'Certificates',
+    viewCertificates: 'View certificates',
+    talks: 'Talks',
     mySkills: 'My skills',
     interestsTitle: 'Areas of interest',
     quote: 'We should keep learning as long as we live.',
@@ -28,7 +32,10 @@ const DICT = {
     present: 'present',
     eduDegree: 'Bachelor’s in Industrial Design',
     eduFocus: 'Focused on Product Design',
-    crestAlt: 'Coat of arms of Universidade Federal Fluminense',
+    mecGrade: 'Program score from Brazil’s Ministry of Education (MEC), the highest possible.',
+    thesisGrade: 'Grade of the final thesis I graduated with.',
+    source: 'Source',
+    campusAlt: 'Universidade Federal Fluminense campus, with students on the lawn',
     visitor: 'Visitor',
     booksTitle: 'Books I recommend',
     booksIntro: '6 books that shaped the way I work and think about products and problems',
@@ -76,6 +83,58 @@ const DICT = {
       { value: '3+', label: 'Years designing digital products' },
       { value: '5+', label: 'Years of design experience' },
     ],
+    solveSteps: [
+      {
+        title: 'Foundation',
+        meaning: 'base, foundation',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Every building starts with what you can’t see. Before a solution takes shape, you need to understand the ground it will stand on.',
+          'I start by investigating the context in which the problem happens. I talk to the people who live with it, analyze the available data and put different perspectives side by side. I want to understand what happens, why it happens and what it causes.',
+          'Then I organize the findings, test hypotheses and separate symptoms from causes. This is the stage where the problem stops being a perception and takes shape. What seemed like one issue may reveal a different need. An obvious solution may stop making sense. A constraint may become an opportunity.',
+          'To me, defining the problem well is already part of the solution. A precise framing leads to better questions, and better questions show which paths are worth exploring.',
+          'The foundation isn’t where I have all the answers. It’s where I create the conditions to make conscious decisions throughout the rest of the project.',
+        ],
+      },
+      {
+        title: 'Reference',
+        meaning: 'reference, consultation',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'With the problem scoped, I look beyond it. I search for projects, products and solutions that have faced similar challenges, including in very different contexts.',
+          'More than seeing what was done, I want to understand why it was done that way. What decisions were made? What needs guided them? What worked? What would I do differently?',
+          'Designing is also learning from what other people have already discovered. I don’t start from scratch, but I don’t copy either. I use references to question familiar paths and see what can be reused, transformed or done better.',
+        ],
+      },
+      {
+        title: 'Building',
+        meaning: 'build, establish',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'With a clear problem and a repertoire in hand, I start turning possibilities into concrete proposals.',
+          'I sketch, prototype and experiment with alternatives. I like to take ideas out of the abstract early, because it’s in contact with reality that assumptions are confirmed, adjusted or dropped.',
+          'Every choice opens some paths and closes others. That’s why I evaluate each proposal by its potential and also by people’s needs, the limits of the context and the feasibility of what’s being designed.',
+          'This process rarely follows a straight line. Testing a solution can reveal a problem I hadn’t seen yet. A discovery can take me back to the references or to the foundation itself. Going back isn’t rework. It’s what keeps the building standing.',
+        ],
+      },
+      {
+        title: 'Iteration',
+        meaning: 'iteration, repetition',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Once a solution reaches the world, I follow how it’s used. I observe behaviors and analyze data and feedback.',
+          'These signals show what’s working, what needs adjusting and what hasn’t been solved yet. Sometimes a small refinement is enough. Other times, a new problem appears.',
+          'Launching isn’t the end of the project. It’s the beginning of a conversation with the people who use the product. Each cycle brings the solution closer to what people need and teaches me something I take to the next problem.',
+        ],
+      },
+    ],
+    foundationAlt: 'Technical drawing of a foundation: a 2D floor plan of footings and beams that turns into an isometric view, with the column rebar rising, as the page scrolls',
+    composeAlt: 'Illustration: an abstract study of shapes in which independent elements, an orange disc, a translucent plane, an arc, a cylinder, a sphere and an organic shape, come closer, overlap and settle into a new structure',
+    graphAlt: 'Interactive illustration: a circular network of points that flash like neurons and connect as the pointer moves nearby',
   },
   pt: {
     title: ['Olá, eu sou Sávio Issa.', 'Product designer na', 'IClass Sistemas.'],
@@ -85,12 +144,16 @@ const DICT = {
     skills: 'Habilidades e formação',
     solve: 'Como resolvo problemas',
     projects: 'Projetos',
-    themeLabel: 'Modo escuro',
+    themeLabel: 'Tema',
+    lightMode: 'Modo claro',
+    darkMode: 'Modo escuro',
     langLabel: 'Idioma',
-    back: 'Voltar',
     home: 'Início',
     education: 'Formação',
     courses: 'Cursos',
+    certificates: 'Certificados',
+    viewCertificates: 'Ver certificados',
+    talks: 'Palestras',
     mySkills: 'Minhas habilidades',
     interestsTitle: 'Áreas de interesse',
     quote: 'Deve-se aprender enquanto se vive.',
@@ -100,7 +163,10 @@ const DICT = {
     present: 'atual',
     eduDegree: 'Bacharel em Desenho Industrial',
     eduFocus: 'Com foco em Design de Produto',
-    crestAlt: 'Brasão da Universidade Federal Fluminense',
+    mecGrade: 'Nota do curso na avaliação do MEC, a máxima.',
+    thesisGrade: 'Nota do TCC com que me formei.',
+    source: 'Fonte',
+    campusAlt: 'Campus da Universidade Federal Fluminense, com estudantes no gramado',
     visitor: 'Visitante',
     booksTitle: 'Livros que indico',
     booksIntro: '6 livros que moldaram minha forma de trabalhar, pensar produto e problema',
@@ -146,6 +212,58 @@ const DICT = {
       { value: '+3', label: 'Anos de experiência com design de produtos digitais' },
       { value: '+5', label: 'Anos de experiência com design' },
     ],
+    solveSteps: [
+      {
+        title: 'Fundação',
+        meaning: 'base, fundamento',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Toda construção começa pelo que não se vê. Antes de uma solução ganhar forma, é preciso entender o terreno onde ela vai ficar de pé.',
+          'Começo investigando o contexto em que o problema acontece. Converso com quem convive com ele, analiso os dados disponíveis e coloco diferentes perspectivas lado a lado. Quero entender o que acontece, por que acontece e o que isso provoca.',
+          'Depois, organizo os achados, testo hipóteses e separo sintomas de causas. É nessa etapa que o problema deixa de ser uma percepção e ganha contorno. O que parecia uma questão pode revelar outra necessidade. Uma solução óbvia pode perder o sentido. Uma restrição pode virar oportunidade.',
+          'Para mim, definir bem o problema já é parte da solução. Um enquadramento preciso gera perguntas melhores, e perguntas melhores mostram quais caminhos merecem ser explorados.',
+          'A fundação não é onde tenho todas as respostas. É onde crio as condições para decidir com consciência durante o resto do projeto.',
+        ],
+      },
+      {
+        title: 'Referência',
+        meaning: 'referência, consulta',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Com o problema delimitado, olho para fora dele. Busco projetos, produtos e soluções que já enfrentaram desafios parecidos, inclusive em contextos bem diferentes.',
+          'Mais do que ver o que foi feito, quero entender por que foi feito assim. Que decisões foram tomadas? Que necessidades as orientaram? O que funcionou? O que eu faria diferente?',
+          'Projetar também é aprender com o que outras pessoas já descobriram. Não parto do zero, mas também não copio. Uso as referências para questionar caminhos conhecidos e enxergar o que dá para aproveitar, transformar ou fazer melhor.',
+        ],
+      },
+      {
+        title: 'Construção',
+        meaning: 'construir, estabelecer',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Com o problema claro e um repertório em mãos, começo a transformar possibilidades em propostas concretas.',
+          'Esboço, prototipo e experimento alternativas. Gosto de tirar as ideias da abstração cedo, porque é no contato com a realidade que as suposições se confirmam, se ajustam ou caem.',
+          'Cada escolha abre alguns caminhos e fecha outros. Por isso avalio cada proposta pelo seu potencial e também pelas necessidades das pessoas, pelos limites do contexto e pela viabilidade do que está sendo desenhado.',
+          'Esse processo raramente segue uma linha reta. Testar uma solução pode revelar um problema que eu ainda não tinha visto. Uma descoberta pode me levar de volta às referências ou à própria fundação. Voltar não é retrabalho. É o que faz a construção ficar de pé.',
+        ],
+      },
+      {
+        title: 'Iteração',
+        meaning: 'iteração, repetição',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Depois que uma solução chega ao mundo, acompanho como ela é usada. Observo comportamentos, analiso dados e feedbacks.',
+          'Esses sinais mostram o que está funcionando, o que precisa de ajuste e o que ainda não foi resolvido. Às vezes basta um pequeno refinamento. Outras vezes, aparece um problema novo.',
+          'Lançar não é o fim do projeto. É o início de uma conversa com quem usa o produto. Cada ciclo deixa a solução mais próxima do que as pessoas precisam e me ensina algo que levo para o próximo problema.',
+        ],
+      },
+    ],
+    foundationAlt: 'Desenho técnico de uma fundação: a planta 2D de sapatas e vigas vira uma vista isométrica, com os arranques dos pilares subindo, conforme a página rola',
+    composeAlt: 'Ilustração: um estudo abstrato de formas em que elementos independentes, um disco laranja, um plano translúcido, um arco, um cilindro, uma esfera e uma forma orgânica, se aproximam, se sobrepõem e se assentam numa estrutura nova',
+    graphAlt: 'Ilustração interativa: uma rede circular de pontos que piscam como neurônios e se conectam quando o ponteiro passa por perto',
   },
   es: {
     title: ['Hola, soy Sávio Issa.', 'Product designer en', 'IClass Sistemas.'],
@@ -155,12 +273,16 @@ const DICT = {
     skills: 'Habilidades y formación',
     solve: 'Cómo resuelvo problemas',
     projects: 'Proyectos',
-    themeLabel: 'Modo oscuro',
+    themeLabel: 'Tema',
+    lightMode: 'Modo claro',
+    darkMode: 'Modo oscuro',
     langLabel: 'Idioma',
-    back: 'Volver',
     home: 'Inicio',
     education: 'Formación',
     courses: 'Cursos',
+    certificates: 'Certificados',
+    viewCertificates: 'Ver certificados',
+    talks: 'Charlas',
     mySkills: 'Mis habilidades',
     interestsTitle: 'Áreas de interés',
     quote: 'Se debe aprender mientras se vive.',
@@ -170,7 +292,10 @@ const DICT = {
     present: 'actualidad',
     eduDegree: 'Licenciatura en Diseño Industrial',
     eduFocus: 'Con enfoque en Diseño de Producto',
-    crestAlt: 'Escudo de la Universidade Federal Fluminense',
+    mecGrade: 'Nota de la carrera en la evaluación del MEC (Ministerio de Educación de Brasil), la máxima.',
+    thesisGrade: 'Nota del trabajo de fin de carrera con el que me gradué.',
+    source: 'Fuente',
+    campusAlt: 'Campus de la Universidade Federal Fluminense, con estudiantes en el césped',
     visitor: 'Visitante',
     booksTitle: 'Libros que recomiendo',
     booksIntro: '6 libros que moldearon mi forma de trabajar y de pensar productos y problemas',
@@ -216,13 +341,65 @@ const DICT = {
       { value: '+3', label: 'Años de experiencia en diseño de productos digitales' },
       { value: '+5', label: 'Años de experiencia en diseño' },
     ],
+    solveSteps: [
+      {
+        title: 'Cimientos',
+        meaning: 'base, cimiento',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Toda construcción empieza por lo que no se ve. Antes de que una solución tome forma, hay que entender el terreno sobre el que se va a sostener.',
+          'Empiezo investigando el contexto en el que ocurre el problema. Hablo con quienes conviven con él, analizo los datos disponibles y pongo distintas perspectivas lado a lado. Quiero entender qué pasa, por qué pasa y qué provoca.',
+          'Después, organizo los hallazgos, pongo a prueba hipótesis y separo síntomas de causas. Es en esta etapa donde el problema deja de ser una percepción y toma contorno. Lo que parecía una cuestión puede revelar otra necesidad. Una solución obvia puede perder sentido. Una restricción puede convertirse en oportunidad.',
+          'Para mí, definir bien el problema ya es parte de la solución. Un encuadre preciso genera mejores preguntas, y las mejores preguntas muestran qué caminos vale la pena explorar.',
+          'Los cimientos no son donde tengo todas las respuestas. Son donde creo las condiciones para decidir con conciencia durante el resto del proyecto.',
+        ],
+      },
+      {
+        title: 'Referencia',
+        meaning: 'referencia, consulta',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Con el problema delimitado, miro más allá de él. Busco proyectos, productos y soluciones que ya enfrentaron desafíos parecidos, incluso en contextos muy distintos.',
+          'Más que ver qué se hizo, quiero entender por qué se hizo así. ¿Qué decisiones se tomaron? ¿Qué necesidades las guiaron? ¿Qué funcionó? ¿Qué haría yo de otra forma?',
+          'Diseñar también es aprender de lo que otras personas ya descubrieron. No parto de cero, pero tampoco copio. Uso las referencias para cuestionar caminos conocidos y ver qué se puede aprovechar, transformar o hacer mejor.',
+        ],
+      },
+      {
+        title: 'Construcción',
+        meaning: 'construir, establecer',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Con el problema claro y un repertorio en mano, empiezo a transformar posibilidades en propuestas concretas.',
+          'Hago bocetos, prototipo y experimento alternativas. Me gusta sacar las ideas de lo abstracto temprano, porque es en contacto con la realidad que las suposiciones se confirman, se ajustan o caen.',
+          'Cada decisión abre algunos caminos y cierra otros. Por eso evalúo cada propuesta por su potencial y también por las necesidades de las personas, los límites del contexto y la viabilidad de lo que se está diseñando.',
+          'Este proceso rara vez sigue una línea recta. Probar una solución puede revelar un problema que todavía no había visto. Un descubrimiento puede llevarme de vuelta a las referencias o a los propios cimientos. Volver no es retrabajo. Es lo que mantiene la construcción en pie.',
+        ],
+      },
+      {
+        title: 'Iteración',
+        meaning: 'iteración, repetición',
+        quote: '',
+        author: '',
+        paragraphs: [
+          'Una vez que una solución llega al mundo, sigo cómo se usa. Observo comportamientos y analizo datos y comentarios.',
+          'Esas señales muestran qué está funcionando, qué necesita ajustes y qué todavía no se resolvió. A veces basta con un pequeño refinamiento. Otras veces, aparece un problema nuevo.',
+          'Lanzar no es el fin del proyecto. Es el inicio de una conversación con quienes usan el producto. Cada ciclo acerca la solución a lo que las personas necesitan y me enseña algo que llevo al próximo problema.',
+        ],
+      },
+    ],
+    foundationAlt: 'Dibujo técnico de unos cimientos: la planta 2D de zapatas y vigas se convierte en una vista isométrica, con las armaduras de los pilares subiendo, a medida que la página se desplaza',
+    composeAlt: 'Ilustración: un estudio abstracto de formas en el que elementos independientes, un disco naranja, un plano translúcido, un arco, un cilindro, una esfera y una forma orgánica, se acercan, se superponen y se asientan en una estructura nueva',
+    graphAlt: 'Ilustración interactiva: una red circular de puntos que parpadean como neuronas y se conectan cuando el puntero pasa cerca',
   },
 } as const;
 
 /** Atributo lang do <html> para cada idioma (leitores de tela e hifenização usam) */
 const HTML_LANG: Record<Lang, string> = { pt: 'pt-BR', en: 'en', es: 'es' };
 
-export type DictKey = Exclude<keyof (typeof DICT)['en'], 'title' | 'aboutText' | 'timeline' | 'stats'>;
+export type DictKey = Exclude<keyof (typeof DICT)['en'], 'title' | 'aboutText' | 'timeline' | 'stats' | 'solveSteps'>;
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {
@@ -232,6 +409,7 @@ export class I18nService {
   readonly aboutText = computed(() => this.dict().aboutText);
   readonly timeline = computed(() => this.dict().timeline);
   readonly stats = computed(() => this.dict().stats);
+  readonly solveSteps = computed(() => this.dict().solveSteps);
 
   constructor() {
     effect(() => {
@@ -251,7 +429,8 @@ export class I18nService {
   private initial(): Lang {
     try {
       const saved = localStorage.getItem(KEY);
-      if (saved === 'pt' || saved === 'en' || saved === 'es') return saved;
+      // O espanhol está fora do seletor: quem o tinha salvo volta para o português
+      if (saved === 'pt' || saved === 'en') return saved;
     } catch {}
     return 'pt';
   }

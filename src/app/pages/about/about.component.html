@@ -1,39 +1,54 @@
 <main class="about">
-  <div class="intro">
-    <article class="content">
-      <h1 class="title">{{ i18n.t('about') }}</h1>
-      @for (paragraph of i18n.aboutText(); track $index) {
-        <p class="text">{{ paragraph }}</p>
-      }
-    </article>
+  <section class="section" aria-labelledby="about-title">
+    <h1 id="about-title" class="section-title">{{ i18n.t('about') }}</h1>
 
-    <app-portraits class="portraits" />
-  </div>
+    <div class="cols">
+      <div class="text">
+        @for (paragraph of i18n.aboutText(); track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
 
-  <section class="block" aria-labelledby="timeline-title">
+      <figure class="aside">
+        <div
+          class="portraits"
+          role="img"
+          [attr.aria-label]="i18n.t('portraitsLabel')"
+          (mouseenter)="paused = true"
+          (mouseleave)="paused = false"
+        >
+          @for (p of portraits(); track p.key) {
+            <img [class]="p.key" [attr.data-key]="p.key" [src]="p.src" alt="" [width]="p.width" [height]="p.height" />
+          }
+        </div>
+        <figcaption class="caption">{{ i18n.t('subtitle') }}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="timeline-title">
     <h2 id="timeline-title" class="section-title">{{ i18n.t('timelineTitle') }}</h2>
 
-    <div class="journey">
-      <div class="timeline">
-        <ol class="events">
-          @for (event of i18n.timeline(); track $index) {
-            <li class="event" [class.current]="event.current">
-              <img class="logo" [src]="event.logo" alt="" width="48" height="48" loading="lazy" />
-              <p class="period">
-                {{ event.period }}
-                @if (event.tag) {
-                  <span class="tag">{{ event.tag }}</span>
-                }
-              </p>
+    <div class="cols">
+      <ol class="events">
+        @for (event of i18n.timeline(); track $index) {
+          <li class="event" [class.current]="event.current">
+            <p class="period">
+              {{ event.period }}
+              @if (event.tag) {
+                · {{ event.tag }}
+              }
+            </p>
+            <div>
               <h3 class="role">{{ event.title }}</h3>
               <p class="org">{{ event.org }}</p>
               <p class="desc">{{ event.text }}</p>
-            </li>
-          }
-        </ol>
-      </div>
+            </div>
+          </li>
+        }
+      </ol>
 
-      <dl class="stats" [attr.aria-label]="i18n.t('statsLabel')">
+      <dl class="aside stats" [attr.aria-label]="i18n.t('statsLabel')">
         @for (stat of i18n.stats(); track $index) {
           <div class="stat">
             <dt class="stat-label">{{ stat.label }}</dt>
@@ -44,20 +59,28 @@
     </div>
   </section>
 
-  <section class="block" aria-labelledby="books-title">
+  <section class="section" aria-labelledby="books-title">
     <h2 id="books-title" class="section-title">{{ i18n.t('booksTitle') }}</h2>
     <p class="lead">{{ i18n.t('booksIntro') }}</p>
-    <app-bookshelf />
+
+    <ol class="books">
+      @for (book of books; track book.slug) {
+        <li class="book">
+          <cite class="book-title">{{ book.title[i18n.lang()] }}</cite>
+          <span class="book-author">{{ book.author }}</span>
+        </li>
+      }
+    </ol>
   </section>
 
   <nav class="pager" aria-label="Menu">
-    <app-glass-button route="/">
+    <a class="pager-link" routerLink="/">
       <app-icon name="arrow-left-md" />
       {{ i18n.t('home') }}
-    </app-glass-button>
-    <app-glass-button route="/habilidades-e-formacao">
+    </a>
+    <a class="pager-link" routerLink="/habilidades-e-formacao">
       {{ i18n.t('skills') }}
       <app-icon name="arrow-right-md" />
-    </app-glass-button>
+    </a>
   </nav>
 </main>

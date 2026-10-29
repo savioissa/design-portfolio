@@ -1,22 +1,26 @@
-<div class="page">
-  <header class="header">
-    @if (isHome()) {
-      <nav class="socials" aria-label="Links">
-        <app-glass-button [href]="links.cv" [external]="true">CV</app-glass-button>
-        <app-glass-button [href]="links.linkedin" [external]="true">LI</app-glass-button>
-        <app-glass-button [href]="links.mail">MAIL</app-glass-button>
-      </nav>
-    } @else {
-      <app-glass-button route="/">
-        <app-icon name="arrow-left-md" />
-        {{ i18n.t('back') }}
-      </app-glass-button>
-    }
-    <div class="controls">
-      <app-theme-switch />
-      <app-lang-select />
-    </div>
+<div class="page" [class.intro]="intro.playing()">
+  <header class="top">
+    <a class="name" routerLink="/" #name>Sávio Issa</a>
+    <app-lang-select class="corner" />
   </header>
 
   <router-outlet />
+
+  @if (showFooter()) {
+    <footer class="bottom corner">
+      <app-theme-switch />
+      <nav class="socials" aria-label="Links">
+        <a [href]="links.cv" target="_blank" rel="noopener noreferrer">CV</a>
+        <a [href]="links.linkedin" target="_blank" rel="noopener noreferrer">LI</a>
+        <a [href]="links.mail">MAIL</a>
+      </nav>
+    </footer>
+  }
 </div>
+
+@if (intro.playing()) {
+  <!-- Intro: só o nome no centro; um clique ou uma tecla adiantam a ida dele para o canto -->
+  <div class="splash" aria-hidden="true" (click)="skipIntro()">
+    <span class="splash-name" #splash>Sávio Issa</span>
+  </div>
+}

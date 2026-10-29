@@ -2,7 +2,7 @@ import type { Lang } from '../services/i18n.service';
 import type { LogoName } from '../ui/icon/logos.generated';
 
 /*
- * Seção "O que faço" em "Habilidades e formação": ferramentas (grade de ícones) e habilidades (post-its girando em roda).
+ * Seção "Minhas habilidades" em "Habilidades e formação": habilidades (verbetes numerados) e ferramentas (logo + nome).
  * Para trocar um ícone, adicione o nome em scripts/icons.config.json ("logos") e rode `npm run icons`.
  */
 export interface Tool {
@@ -13,8 +13,6 @@ export interface Tool {
 export interface Skill {
   title: Record<Lang, string>;
   text: Record<Lang, string>;
-  /** Cor do post-it */
-  color: string;
 }
 
 export const TOOLS: Tool[] = [
@@ -31,7 +29,6 @@ export const TOOLS: Tool[] = [
 export const SKILLS: Skill[] = [
   {
     title: { pt: 'Pesquisa', en: 'Research', es: 'Investigación' },
-    color: '#FFE873',
     text: {
       pt: 'Entrevistas, testes de usabilidade e análise de dados para entender quem usa o produto e priorizar os problemas certos.',
       en: 'Interviews, usability tests and data analysis to understand who uses the product and prioritize the right problems.',
@@ -40,7 +37,6 @@ export const SKILLS: Skill[] = [
   },
   {
     title: { pt: 'Prototipação', en: 'Prototyping', es: 'Prototipado' },
-    color: '#FFB3D9',
     text: {
       pt: 'Do wireframe ao protótipo de alta fidelidade, para validar ideias rápido antes de construir.',
       en: 'From wireframes to high-fidelity prototypes, to validate ideas quickly before building.',
@@ -49,7 +45,6 @@ export const SKILLS: Skill[] = [
   },
   {
     title: { pt: 'UI e UX', en: 'UI & UX', es: 'UI y UX' },
-    color: '#A8D8FF',
     text: {
       pt: 'Interfaces claras e consistentes, equilibrando as necessidades de quem usa com os objetivos do negócio.',
       en: 'Clear, consistent interfaces that balance user needs with business goals.',
@@ -58,7 +53,6 @@ export const SKILLS: Skill[] = [
   },
   {
     title: { pt: 'Handoff', en: 'Handoff', es: 'Handoff' },
-    color: '#B9F2A1',
     text: {
       pt: 'Especificações, componentes e documentação para o time de desenvolvimento construir sem ruído.',
       en: 'Specs, components and documentation so the development team can build without friction.',
@@ -67,7 +61,6 @@ export const SKILLS: Skill[] = [
   },
   {
     title: { pt: 'QA', en: 'QA', es: 'QA' },
-    color: '#FFC58F',
     text: {
       pt: 'Revisão da implementação contra o design, apontando ajustes de interface, comportamento e acessibilidade.',
       en: 'Reviewing the implementation against the design, flagging interface, behavior and accessibility fixes.',
@@ -76,7 +69,6 @@ export const SKILLS: Skill[] = [
   },
   {
     title: { pt: 'Fluxos com IA', en: 'AI workflows', es: 'Flujos con IA' },
-    color: '#D4BFFF',
     text: {
       pt: 'Uso de IA para acelerar pesquisa, documentação e prototipação, do primeiro rascunho ao código.',
       en: 'Using AI to speed up research, documentation and prototyping, from first draft to code.',

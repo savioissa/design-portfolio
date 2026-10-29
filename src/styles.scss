@@ -5,6 +5,20 @@
   --placeholder: #6F737C;
   --border: #DADCE0;
 
+  /* Ilustrações ("Como resolvo problemas"): traço, preenchimento creme e terracota, no estilo das ilustrações do Claude */
+  --illus-line: #1F1E1D;
+  --illus-fill: #F0EEE6;
+  --illus-warm: #D97757;
+  /* Cinzas do desenho técnico (fundação): topo, face clara e face sombreada */
+  --illus-gray-1: #EDEDEB;
+  --illus-gray-2: #D2D2CF;
+  --illus-gray-3: #ABABA7;
+  /* Único tom de destaque das composições geométricas: laranja queimado */
+  --illus-ember: #C1531E;
+  /* Transparências: escurecem no claro (multiply) e clareiam no escuro (screen) */
+  --illus-blend: multiply;
+  --illus-shadow: rgba(20, 20, 18, 0.16);
+
   --accent: #0D47A1;
   --accent-hover: #0B3A85;
   --accent-subtle: #EEF4FE;
@@ -31,6 +45,16 @@
   --text-secondary: #B0B3BB;
   --placeholder: #80848D;
   --border: #2E323B;
+
+  --illus-line: #E8E6DF;
+  --illus-fill: #23262E;
+  --illus-warm: #E08B6D;
+  --illus-gray-1: #4A4D55;
+  --illus-gray-2: #383B42;
+  --illus-gray-3: #272A30;
+  --illus-ember: #D4683A;
+  --illus-blend: screen;
+  --illus-shadow: rgba(0, 0, 0, 0.55);
 
   --accent: #5C93E8;
   --accent-hover: #8DB4F2;
@@ -70,7 +94,10 @@
 
   --font-serif: "Roboto Serif", Georgia, "Times New Roman", serif;
   --font-sans: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Só os ideogramas de "Como resolvo problemas" (index.html carrega apenas esses caracteres) */
+  --font-cjk: "Noto Serif SC", "Songti SC", "SimSun", serif;
   --font-weight-serif: 500;
+  --font-weight-serif-regular: 400;
   --font-weight-sans: 400;
   --font-weight-button: 600;
   --font-weight-menu: 500;
@@ -129,6 +156,9 @@
 
 html, body { margin: 0; min-height: 100%; }
 
+/* 100vw inclui a barra de rolagem: corta a sobra das seções de ponta a ponta sem criar rolagem horizontal */
+body { overflow-x: clip; }
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -178,18 +208,84 @@ h1, h2, h3, h4 {
   .soon-chip { transition: none; }
 }
 
-/* Título de seção (h2) das páginas internas: "Trajetória e experiência", "Livros que indico", "Minhas habilidades" */
-.section-title {
-  font-size: var(--text-xl);
-  line-height: var(--leading-xl);
-  margin-bottom: var(--space-5);
+/*
+ * Páginas internas em estilo jornal, minimalista: cada seção abre com um fio forte e um rótulo pequeno,
+ * e o conteúdo se divide em colunas separadas por fios finos (Sobre mim, Habilidades e formação).
+ */
+.section {
+  display: block;
+  border-top: 1px solid var(--text);
+
+  & + & { margin-top: var(--space-7); }
 }
 
-@media (max-width: 600px) {
-  .section-title {
-    font-size: var(--text-lg);
-    line-height: var(--leading-lg);
-    margin-bottom: var(--space-4);
+/* Rótulo da seção: mesmo estilo do nome no canto */
+.section-title {
+  padding-top: var(--space-3);
+  margin-bottom: var(--space-5);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-menu);
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Rótulo menor dentro de uma coluna ("Cursos", "Ferramentas") */
+.sublabel {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-sans);
+  line-height: var(--leading-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--placeholder);
+}
+
+/* Conteúdo principal à esquerda e coluna lateral à direita (largura em --aside), com fio vertical entre os dois */
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--aside, 14rem);
+  align-items: start;
+}
+
+.aside {
+  margin: 0 0 0 var(--space-5);
+  padding-left: var(--space-5);
+  border-left: 1px solid var(--border);
+  align-self: stretch;
+}
+
+/* Legenda de foto */
+.caption {
+  margin-top: var(--space-2);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--text-secondary);
+}
+
+/* Fora da tela, mas lido por leitores de tela e buscadores */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Telas médias: a coluna lateral desce para baixo do conteúdo, com fio horizontal no lugar do vertical */
+@media (max-width: 900px) {
+  .section + .section { margin-top: var(--space-6); }
+
+  .cols { grid-template-columns: minmax(0, 1fr); }
+
+  .aside {
+    margin: var(--space-5) 0 0;
+    padding: var(--space-5) 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--border);
   }
 }
 
@@ -205,4 +301,51 @@ h1, h2, h3, h4 {
 
 @media (max-width: 600px) {
   .pager { margin-top: var(--space-6); }
+}
+
+/* Navegação do fim da página em texto, no mesmo estilo do menu da home (página Sobre mim) */
+.pager-link {
+  --icon-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  /* Também usado em <button> (página que ainda não existe, com appSoon) */
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-serif-regular);
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  text-decoration: none;
+  color: var(--text);
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    color 0.2s ease;
+
+  &:first-child { transform-origin: left center; }
+  &:last-child { transform-origin: right center; }
+
+  &:hover,
+  &:focus-visible {
+    color: var(--placeholder);
+    transform: scale(1.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pager-link { transition: none; }
+  .pager-link:hover, .pager-link:focus-visible { transform: none; }
+}
+
+/* Mobile: área de toque de 40px */
+@media (max-width: 600px) {
+  .pager-link { padding-block: var(--space-2); }
 }

@@ -1,95 +1,85 @@
 <main class="skills">
-  <h1 class="title">{{ i18n.t('skills') }}</h1>
+  <h1 class="visually-hidden">{{ i18n.t('skills') }}</h1>
 
-  <section class="block" [attr.aria-label]="i18n.t('education')">
-    <div class="split">
-      <article class="degree" (pointermove)="onMove($event)" (pointerleave)="resetTilt()">
-        <!-- Filtro "massinha" do brasão: relevo a partir da silhueta e dos tons da imagem,
-             iluminação suave vinda de cima à esquerda e um brilho especular, como os ícones 3D do Airbnb -->
-        <svg class="defs" width="0" height="0" aria-hidden="true">
-          <filter id="clay" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
-            <feColorMatrix in="SourceGraphic" type="saturate" values="1.25" result="vivid" />
-            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="edges" />
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.3 0.59 0.11 0 0" result="lum" />
-            <feComposite in="lum" in2="SourceAlpha" operator="in" result="lumIn" />
-            <feGaussianBlur in="lumIn" stdDeviation="1.5" result="details" />
-            <feComposite in="edges" in2="details" operator="arithmetic" k2="0.75" k3="0.25" result="bump" />
-            <feDiffuseLighting in="bump" surfaceScale="5" diffuseConstant="1.15" lighting-color="#fff" result="diffuse">
-              <feDistantLight azimuth="225" elevation="55" />
-            </feDiffuseLighting>
-            <feBlend in="vivid" in2="diffuse" mode="multiply" result="shaded" />
-            <feSpecularLighting in="bump" surfaceScale="5" specularConstant="0.8" specularExponent="18" lighting-color="#fff" result="gloss">
-              <feDistantLight azimuth="225" elevation="45" />
-            </feSpecularLighting>
-            <feComposite in="shaded" in2="gloss" operator="arithmetic" k2="1" k3="0.5" result="lit" />
-            <feComposite in="lit" in2="SourceAlpha" operator="in" />
-          </filter>
-        </svg>
+  <section class="section education" aria-labelledby="education-title">
+    <h2 id="education-title" class="section-title">{{ i18n.t('education') }}</h2>
 
-        <div class="stage" [style.--rx.deg]="tilt().x" [style.--ry.deg]="tilt().y">
-          <img class="crest" src="logos/uff-brasao.png" [alt]="i18n.t('crestAlt')" width="444" height="500" />
-        </div>
+    <div class="education-grid">
+      <figure class="campus">
+        <img src="photos/uff-campus.jpg" [alt]="i18n.t('campusAlt')" width="1600" height="1100" />
+        <figcaption class="caption">Universidade Federal Fluminense, Niterói</figcaption>
+      </figure>
 
-        <div class="info">
-          <p class="meta">
-            <span>2021 – 2026</span>
-            <span class="sep" aria-hidden="true">|</span>
-            <span class="org">Universidade Federal Fluminense</span>
-          </p>
-          <h2 class="degree-title">{{ i18n.t('eduDegree') }}</h2>
-          <p class="focus">{{ i18n.t('eduFocus') }}</p>
-        </div>
-      </article>
+      <div class="column">
+        <p class="period">2021 – 2026</p>
+        <h3 class="degree">{{ i18n.t('eduDegree') }}</h3>
+        <p class="meta">Universidade Federal Fluminense</p>
+        <p class="focus">{{ i18n.t('eduFocus') }}</p>
 
-      <div class="courses">
-        <h2 id="courses-title" class="courses-title">{{ i18n.t('courses') }}</h2>
-        <ul class="course-list" aria-labelledby="courses-title">
+        <dl class="highlights">
+          <div class="highlight">
+            <dt class="highlight-label">
+              {{ i18n.t('mecGrade') }}
+              <a class="source" [href]="mecSource" target="_blank" rel="noopener noreferrer">
+                {{ i18n.t('source') }}
+                <app-icon name="external-link" />
+              </a>
+            </dt>
+            <dd class="highlight-value">5</dd>
+          </div>
+          <div class="highlight">
+            <dt class="highlight-label">{{ i18n.t('thesisGrade') }}</dt>
+            <dd class="highlight-value">10</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="column">
+        <h3 id="courses-title" class="sublabel">{{ i18n.t('courses') }}</h3>
+        <ul class="courses" aria-labelledby="courses-title">
           @for (course of courses; track course.slug) {
             <li class="course">
-              <img
-                class="thumb"
-                [class.contain]="course.contain"
-                [src]="'courses/' + course.slug + '.png'"
-                alt=""
-                width="48"
-                height="48"
-                loading="lazy"
-              />
-              <div class="course-info">
-                <p class="course-name">{{ course.title }}</p>
-                <p class="course-meta">
-                  {{ course.provider }}
-                  @if (course.start) {
-                    · {{ course.start }}{{ course.current ? ' – ' + i18n.t('present') : '' }}
-                  }
-                </p>
-              </div>
+              <p class="course-name">{{ course.title }}</p>
+              <p class="meta">
+                {{ course.provider }}
+                @if (course.start) {
+                  · {{ course.start }}{{ course.current ? ' – ' + i18n.t('present') : '' }}
+                }
+              </p>
             </li>
           }
         </ul>
+
+        <button type="button" class="more" aria-haspopup="dialog" (click)="certificates.open()">
+          {{ i18n.t('viewCertificates') }}
+          <app-icon name="arrow-right-md" />
+        </button>
       </div>
     </div>
+
+    <!-- Dentro da seção: entre duas seções quebraria o espaçamento .section + .section -->
+    <app-certificates-dialog #certificates />
   </section>
 
-  <app-what-i-do class="block" />
+  <app-what-i-do class="section" />
 
-  <app-tag-marquee class="block interests" />
+  <app-tag-marquee class="section" />
 
-  <figure class="block quote">
+  <figure class="quote">
     <blockquote>
       <p>“{{ i18n.t('quote') }}”</p>
     </blockquote>
-    <figcaption>— {{ i18n.t('quoteAuthor') }}</figcaption>
+    <figcaption>{{ i18n.t('quoteAuthor') }}</figcaption>
   </figure>
 
   <nav class="pager" aria-label="Menu">
-    <app-glass-button route="/">
+    <a class="pager-link" routerLink="/">
       <app-icon name="arrow-left-md" />
       {{ i18n.t('home') }}
-    </app-glass-button>
-    <app-glass-button [disabled]="true" appSoon>
+    </a>
+    <a class="pager-link" routerLink="/como-resolvo-problemas">
       {{ i18n.t('solve') }}
       <app-icon name="arrow-right-md" />
-    </app-glass-button>
+    </a>
   </nav>
 </main>

@@ -1,0 +1,44 @@
+@let steps = i18n.solveSteps();
+
+<main class="solve">
+  <h1 class="visually-hidden">{{ i18n.t('solve') }}</h1>
+
+  @for (step of steps; track $index) {
+    @let n = $index + 1;
+    <section class="section chapter" [id]="'step-' + n" [attr.aria-labelledby]="'step-title-' + n">
+      <h2 class="section-title" [id]="'step-title-' + n">0{{ n }} · {{ step.title }}</h2>
+
+      <div class="cols">
+        <div class="text">
+          @if (step.quote) {
+            <figure class="quote">
+              <blockquote>
+                <p>“{{ step.quote }}”</p>
+              </blockquote>
+              <figcaption>— {{ step.author }}</figcaption>
+            </figure>
+          }
+          @for (paragraph of step.paragraphs; track $index) {
+            <p [innerHTML]="paragraph"></p>
+          }
+        </div>
+
+        <figure class="aside glyph" role="img" [attr.aria-label]="glyphs[n - 1] + ': ' + step.meaning">
+          <span class="glyph-char" lang="zh-Hans" aria-hidden="true">{{ glyphs[n - 1] }}</span>
+          <figcaption class="caption" aria-hidden="true">{{ step.meaning }}</figcaption>
+        </figure>
+      </div>
+    </section>
+  }
+
+  <nav class="pager" aria-label="Menu">
+    <a class="pager-link" routerLink="/">
+      <app-icon name="arrow-left-md" />
+      {{ i18n.t('home') }}
+    </a>
+    <button type="button" class="pager-link" appSoon>
+      {{ i18n.t('projects') }}
+      <app-icon name="arrow-right-md" />
+    </button>
+  </nav>
+</main>

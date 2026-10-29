@@ -1,0 +1,101 @@
+/* Ocupa o espaço abaixo do topo dentro de .page */
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo jornal (seções, rótulos e colunas em styles.scss), no mesmo tom de "Sobre mim" */
+.solve {
+  flex: 1;
+  padding-top: var(--space-6);
+}
+
+/* Capítulo: texto em uma coluna e o ideograma bem grande na coluna lateral */
+.chapter .cols { --aside: 24rem; }
+
+/* Largura de leitura confortável (~70 caracteres por linha) */
+.text {
+  max-width: 44rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  line-height: var(--leading-xl);
+  color: var(--text-secondary);
+
+  p { margin: 0; }
+  p + p { margin-top: var(--space-4); }
+
+  /* Destaques dos parágrafos: o <strong> vem do i18n via innerHTML, sem o atributo do componente */
+  ::ng-deep strong {
+    font-weight: var(--font-weight-serif);
+    color: var(--text);
+  }
+}
+
+.quote {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-serif);
+  color: var(--text);
+
+  blockquote { margin: 0; }
+  p { margin: 0; font-size: var(--text-xl); line-height: var(--leading-xl); }
+  figcaption { margin-top: var(--space-2); font-family: var(--font-sans); font-size: var(--text-xs); }
+}
+
+/* O ideograma fica centralizado na altura do texto (a coluna lateral estica até o fim dele) */
+.glyph {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.glyph-char {
+  font-family: var(--font-cjk);
+  font-size: 18rem;
+  line-height: 1;
+  color: var(--text);
+}
+
+.glyph .caption { margin-top: var(--space-3); }
+
+.section {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  &:nth-child(3) { animation-delay: 0.08s; }
+  &:nth-child(4) { animation-delay: 0.16s; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section { animation: none; }
+}
+
+/* Telas médias: o ideograma fica menor, mas ainda grande */
+@media (max-width: 1200px) {
+  .chapter .cols { --aside: 18rem; }
+
+  .glyph-char { font-size: 13rem; }
+}
+
+/* Coluna única: o ideograma desce para baixo do texto (styles.scss), centralizado com a tradução embaixo */
+@media (max-width: 900px) {
+  .solve { padding-top: var(--space-5); }
+
+  .glyph-char { font-size: 9rem; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .text {
+    font-size: var(--text-base);
+    line-height: var(--leading-lg);
+  }
+
+  .glyph-char { font-size: 7rem; }
+}

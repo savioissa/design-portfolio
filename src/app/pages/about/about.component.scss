@@ -1,166 +1,118 @@
-/* Ocupa o espaço abaixo do header dentro de .page */
+/* Ocupa o espaço abaixo do topo dentro de .page */
 :host {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
+/* Estilo jornal (seções, rótulos e colunas em styles.scss); texto em Roboto Serif, como o menu da home */
 .about {
   flex: 1;
-  padding-top: var(--space-7);
+  padding-top: var(--space-6);
 }
 
-/* Texto "Sobre mim" e retratos lado a lado; os retratos ficam centralizados na altura do texto */
-.intro {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-6);
-}
-
-.portraits { flex: none; }
-
-@media (max-width: 1200px) {
-  .portraits { --portraits-scale: 0.85; }
-}
-
-/* Largura de leitura confortável (~70 caracteres por linha) */
-.content,
-.timeline {
-  flex: 0 1 44rem;
-  min-width: 0;
-  max-width: 44rem;
-}
-
-.title {
-  font-size: var(--text-3xl);
-  line-height: var(--leading-3xl);
-  margin-bottom: var(--space-5);
-}
-
+/* Texto corrido em duas colunas, como num jornal */
 .text {
-  margin: 0;
+  columns: 2;
+  column-gap: var(--space-6);
+  column-rule: 1px solid var(--border);
+  font-family: var(--font-serif);
   font-size: var(--text-lg);
   line-height: var(--leading-xl);
   color: var(--text-secondary);
 
-  & + & { margin-top: var(--space-4); }
+  p { margin: 0; }
+  p + p { margin-top: var(--space-4); }
 }
 
-.block { margin-top: var(--space-7); }
+/* Os três retratos combinados: o que está em destaque em cima, os outros dois lado a lado embaixo */
+.portraits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  max-width: 14rem;
 
-/* Abaixo do título: linha do tempo à esquerda e indicadores à direita */
-.journey {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-6);
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    /* A troca de lugar escala a partir do canto superior esquerdo (about.component.ts) */
+    transform-origin: 0 0;
+  }
+
+  img:first-child { grid-column: span 2; }
+
+  /* Mantém os pixels nítidos e mostra o rosto, que fica no alto da imagem */
+  .pixel {
+    image-rendering: pixelated;
+    object-position: top;
+  }
 }
 
-/* Descrição logo abaixo de um título de seção */
-h2:has(+ .lead) { margin-bottom: var(--space-2); }
-
-.lead {
-  margin: 0 0 var(--space-5);
+.org,
+.book-author,
+.stat-label {
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
   color: var(--text-secondary);
 }
 
-/* Linha do tempo */
+/* Trajetória: período à esquerda e cargo à direita, uma linha por experiência separada por fio */
 .events {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Cada item mostra o logo do local num círculo e desenha o trecho de linha até o próximo (::before) */
 .event {
-  --dot: 48px;
-  position: relative;
-  min-height: var(--dot);
-  padding: 0 0 var(--space-5) calc(var(--dot) + var(--space-4));
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-block: var(--space-4);
 
-  &::before {
-    content: '';
-    position: absolute;
-    left: calc(var(--dot) / 2 - 1px);
-    top: calc(var(--dot) + 8px);
-    bottom: 8px;
-    width: 2px;
-    background: var(--border);
-  }
-
+  &:first-child { padding-top: 0; }
+  & + & { border-top: 1px solid var(--border); }
   &:last-child { padding-bottom: 0; }
-  &:last-child::before { display: none; }
-}
-
-.logo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: var(--dot);
-  height: var(--dot);
-  border-radius: var(--radius-full);
-  border: 2px solid var(--border);
-  background: #fff;
-  object-fit: cover;
-  box-sizing: border-box;
-
-  .current & {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 4px var(--accent-subtle);
-  }
 }
 
 .period {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin: 0 0 var(--space-1);
+  margin: 0;
   font-size: var(--text-xs);
-  line-height: var(--leading-xs);
-  font-weight: var(--font-weight-button);
-  color: var(--accent);
-}
+  line-height: var(--leading-lg);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--placeholder);
 
-.tag {
-  padding: 0 var(--space-2);
-  border: 1px solid var(--accent-border);
-  border-radius: var(--radius-full);
-  background: var(--accent-subtle);
-  font-weight: var(--font-weight-menu);
+  .current & {
+    color: var(--text);
+    font-weight: var(--font-weight-button);
+  }
 }
 
 .role {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-serif-regular);
   font-size: var(--text-lg);
   line-height: var(--leading-lg);
-  font-weight: var(--font-weight-button);
 }
 
-.org {
-  margin: 0;
-}
+.org { margin: 0; }
 
-/* ~8 palavras por linha (média de ~5,5 caracteres por palavra com o espaço) */
 .desc {
   max-width: 44ch;
-  margin: var(--space-1) 0 0;
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-serif);
   color: var(--text-secondary);
 }
 
-/* Indicadores: número grande acima do rótulo, separados por linhas */
-.stats {
-  flex: 0 1 18rem;
-  min-width: 0;
-  margin: 0;
-  text-align: right;
-}
+/* Indicadores na coluna lateral: número acima do rótulo, separados por fio */
+.stats { margin-top: 0; }
 
 .stat {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 
   & + & {
     margin-top: var(--space-4);
@@ -172,25 +124,61 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
 /* No HTML o rótulo vem antes (dt/dd); visualmente o número aparece primeiro */
 .stat-value {
   order: -1;
-  margin: 0 0 var(--space-2);
-  font-family: var(--font-sans);
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-serif);
   font-size: var(--text-4xl);
   line-height: 1.1;
-  font-weight: var(--font-weight-button);
-  color: var(--text);
 }
 
-.stat-label {
-  max-width: 14rem;
+.lead {
+  max-width: 44rem;
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-serif);
   color: var(--text-secondary);
 }
 
-.title, .text, .block {
-  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+/* Livros: lista numerada em três colunas com fios, como um índice */
+.books {
+  columns: 3;
+  column-gap: var(--space-6);
+  column-rule: 1px solid var(--border);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: book;
 }
-.text { animation-delay: 0.08s; }
-.text + .text { animation-delay: 0.16s; }
-.block { animation-delay: 0.24s; }
+
+.book {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  break-inside: avoid;
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--border);
+  counter-increment: book;
+
+  &::before {
+    content: counter(book, decimal-leading-zero);
+    grid-row: span 2;
+    font-size: var(--text-xs);
+    line-height: var(--leading-lg);
+    letter-spacing: 0.08em;
+    color: var(--placeholder);
+  }
+}
+
+.book-title {
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
+}
+
+.section {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  &:nth-child(2) { animation-delay: 0.08s; }
+  &:nth-child(3) { animation-delay: 0.16s; }
+}
 
 @keyframes rise {
   from { opacity: 0; transform: translateY(12px); }
@@ -198,74 +186,40 @@ h2:has(+ .lead) { margin-bottom: var(--space-2); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .title, .text, .block { animation: none; }
+  .section { animation: none; }
 }
 
-/* Telas médias: retratos e indicadores descem para baixo do texto */
+/* Telas médias: a coluna lateral desce para baixo do conteúdo, com fio horizontal no lugar do vertical */
 @media (max-width: 900px) {
-  .about { padding-top: var(--space-6); }
+  .about { padding-top: var(--space-5); }
 
-  .intro {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  /* Em coluna o flex-basis de 44rem viraria altura e abriria um vão enorme */
-  .content, .timeline, .stats { flex: none; }
-
-  .portraits { --portraits-scale: 0.8; align-self: center; }
-
-  .title {
-    font-size: var(--text-2xl);
-    line-height: var(--leading-2xl);
-  }
-
-  /* Indicadores descem para baixo da trajetória, alinhados à esquerda */
-  .journey {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-5);
-  }
-
-  .block { margin-top: var(--space-6); }
-
-  .stats { text-align: left; }
-
-  .stat { align-items: flex-start; }
+  .books { columns: 2; }
 
   .stat-value { font-size: var(--text-3xl); }
 }
 
-/* Mobile */
+/* Mobile: tudo em uma coluna */
 @media (max-width: 600px) {
-  .about { padding-top: var(--space-5); }
-
-  .intro { gap: var(--space-5); }
-
-  .portraits { --portraits-scale: 0.7; }
-
-  .title {
-    font-size: var(--text-xl);
-    line-height: var(--leading-xl);
-    margin-bottom: var(--space-4);
-  }
-
   .text {
+    columns: 1;
     font-size: var(--text-base);
     line-height: var(--leading-lg);
   }
 
-  .block { margin-top: var(--space-6); }
-
-  .journey { gap: var(--space-4); }
+  .event {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1);
+  }
 
   .role {
     font-size: var(--text-base);
     line-height: var(--leading-base);
   }
 
-  .event {
-    --dot: 40px;
-    padding-left: calc(var(--dot) + var(--space-3));
+  .books { columns: 1; }
+
+  .book-title {
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
   }
 }

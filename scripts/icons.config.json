@@ -1,5 +1,5 @@
 {
   "$comment": "icons: ícones do coolicons (https://github.com/krystonschwarze/coolicons). logos: logos de marcas do Iconify (https://icon-sets.iconify.design/logos/). Depois de editar, rode: npm run icons",
-  "icons": ["sun", "moon", "chevron-down", "arrow-left-md", "arrow-right-md", "close-md", "external-link"],
+  "icons": ["sun", "moon", "arrow-left-md", "arrow-right-md", "close-md", "external-link"],
   "logos": ["figma", "adobe-photoshop", "adobe-illustrator", "visual-studio-code", "postman-icon", "claude-icon", "obsidian-icon", "github-icon"]
 }

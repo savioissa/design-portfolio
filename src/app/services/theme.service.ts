@@ -13,10 +13,9 @@ export class ThemeService {
     });
   }
 
-  toggle(): void {
-    const next: Theme = this.theme() === 'dark' ? 'light' : 'dark';
-    this.theme.set(next);
-    try { localStorage.setItem(KEY, next); } catch {}
+  set(theme: Theme): void {
+    this.theme.set(theme);
+    try { localStorage.setItem(KEY, theme); } catch {}
   }
 
   private initial(): Theme {
