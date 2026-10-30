@@ -24,6 +24,6 @@ export class HomeComponent {
     { key: 'about', route: '/sobre-mim' },
     { key: 'skills', route: '/habilidades-e-formacao' },
     { key: 'solve', route: '/como-resolvo-problemas' },
-    { key: 'projects' },
+    { key: 'projects', route: '/projetos' },
   ];
 }

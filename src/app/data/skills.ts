@@ -28,51 +28,45 @@ export const TOOLS: Tool[] = [
 
 export const SKILLS: Skill[] = [
   {
-    title: { pt: 'Pesquisa', en: 'Research', es: 'Investigación' },
+    title: { pt: 'Pesquisa', en: 'Research' },
     text: {
       pt: 'Entrevistas, testes de usabilidade e análise de dados para entender quem usa o produto e priorizar os problemas certos.',
       en: 'Interviews, usability tests and data analysis to understand who uses the product and prioritize the right problems.',
-      es: 'Entrevistas, pruebas de usabilidad y análisis de datos para entender a quien usa el producto y priorizar los problemas correctos.',
     },
   },
   {
-    title: { pt: 'Prototipação', en: 'Prototyping', es: 'Prototipado' },
+    title: { pt: 'Prototipação', en: 'Prototyping' },
     text: {
       pt: 'Do wireframe ao protótipo de alta fidelidade, para validar ideias rápido antes de construir.',
       en: 'From wireframes to high-fidelity prototypes, to validate ideas quickly before building.',
-      es: 'Del wireframe al prototipo de alta fidelidad, para validar ideas rápido antes de construir.',
     },
   },
   {
-    title: { pt: 'UI e UX', en: 'UI & UX', es: 'UI y UX' },
+    title: { pt: 'UI e UX', en: 'UI & UX' },
     text: {
       pt: 'Interfaces claras e consistentes, equilibrando as necessidades de quem usa com os objetivos do negócio.',
       en: 'Clear, consistent interfaces that balance user needs with business goals.',
-      es: 'Interfaces claras y consistentes, que equilibran las necesidades de quien usa con los objetivos del negocio.',
     },
   },
   {
-    title: { pt: 'Handoff', en: 'Handoff', es: 'Handoff' },
+    title: { pt: 'Handoff', en: 'Handoff' },
     text: {
       pt: 'Especificações, componentes e documentação para o time de desenvolvimento construir sem ruído.',
       en: 'Specs, components and documentation so the development team can build without friction.',
-      es: 'Especificaciones, componentes y documentación para que el equipo de desarrollo construya sin ruido.',
     },
   },
   {
-    title: { pt: 'QA', en: 'QA', es: 'QA' },
+    title: { pt: 'QA', en: 'QA' },
     text: {
       pt: 'Revisão da implementação contra o design, apontando ajustes de interface, comportamento e acessibilidade.',
       en: 'Reviewing the implementation against the design, flagging interface, behavior and accessibility fixes.',
-      es: 'Revisión de la implementación frente al diseño, señalando ajustes de interfaz, comportamiento y accesibilidad.',
     },
   },
   {
-    title: { pt: 'Fluxos com IA', en: 'AI workflows', es: 'Flujos con IA' },
+    title: { pt: 'Fluxos com IA', en: 'AI workflows' },
     text: {
       pt: 'Uso de IA para acelerar pesquisa, documentação e prototipação, do primeiro rascunho ao código.',
       en: 'Using AI to speed up research, documentation and prototyping, from first draft to code.',
-      es: 'Uso de IA para acelerar la investigación, la documentación y el prototipado, del primer borrador al código.',
     },
   },
 ];

@@ -44,10 +44,9 @@
 
   img:first-child { grid-column: span 2; }
 
-  /* Mantém os pixels nítidos e mostra o rosto, que fica no alto da imagem */
+  /* Mantém os pixels nítidos */
   .pixel {
     image-rendering: pixelated;
-    object-position: top;
   }
 }
 

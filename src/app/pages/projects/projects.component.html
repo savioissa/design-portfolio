@@ -1,0 +1,52 @@
+<main class="projects">
+  <h1 class="visually-hidden">{{ i18n.t('projects') }}</h1>
+
+  @for (section of sections; track section.id) {
+    <section class="section" [attr.aria-labelledby]="'projects-' + section.id">
+      <h2 class="section-title" [id]="'projects-' + section.id">{{ section.title[i18n.lang()] }}</h2>
+
+      <ul class="grid">
+        @for (slug of section.projects; track slug) {
+          @let project = projects[slug];
+          <li>
+            <ng-template #content>
+              <span class="thumb">
+                @if (project.image) {
+                  <img [src]="project.image" [style.object-position]="project.imagePosition" alt="" loading="lazy" />
+                }
+              </span>
+              <span class="name">
+                {{ project.title[i18n.lang()] }}
+                <app-icon class="arrow" name="arrow-right-md" />
+              </span>
+              <!-- Áreas de conhecimento; dentro do botão só cabem spans -->
+              <span class="tags">
+                @for (tag of project.tags; track tag) {
+                  <span class="tag">{{ tagNames[tag][i18n.lang()] }}</span>
+                }
+              </span>
+            </ng-template>
+
+            @if (project.route) {
+              <a class="card" [routerLink]="project.route">
+                <ng-container [ngTemplateOutlet]="content" />
+              </a>
+            } @else {
+              <!-- Página do projeto ainda não existe: o chip "Em breve" segue o mouse -->
+              <button type="button" class="card" appSoon>
+                <ng-container [ngTemplateOutlet]="content" />
+              </button>
+            }
+          </li>
+        }
+      </ul>
+    </section>
+  }
+
+  <nav class="pager" aria-label="Menu">
+    <a class="pager-link" routerLink="/como-resolvo-problemas">
+      <app-icon name="arrow-left-md" />
+      {{ i18n.t('solve') }}
+    </a>
+  </nav>
+</main>

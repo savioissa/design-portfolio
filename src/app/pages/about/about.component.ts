@@ -6,8 +6,10 @@ import { IconComponent } from '../../ui/icon/icon.component';
 
 const PORTRAITS = [
   { key: 'photo', src: 'avatars/photo.png', width: 313, height: 331 },
-  { key: 'sketch', src: 'avatars/sketch.jpg', width: 1440, height: 1440 },
-  { key: 'pixel', src: 'avatars/pixel.png', width: 507, height: 735 },
+  // Recorte do desenho em volta do rosto (o original tem muito papel em volta)
+  { key: 'sketch', src: 'avatars/sketch-face.jpg', width: 640, height: 640 },
+  // Pixel art inteira num quadrado creme (borda cinza do original removida), para mostrar mais do que só o rosto
+  { key: 'pixel', src: 'avatars/pixel-square.png', width: 723, height: 723 },
 ];
 /** Tempo de cada retrato em destaque. */
 const PORTRAIT_INTERVAL = 4000;

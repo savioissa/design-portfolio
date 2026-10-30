@@ -1,8 +1,13 @@
 .page {
+  /* dvh = altura visível de verdade no celular (100vh conta a tela sem a barra do navegador e cria scroll);
+     100vh fica de reserva para navegadores antigos */
   min-height: 100vh;
+  min-height: 100dvh;
   /* Margem lateral da página; seções que vão de ponta a ponta da tela (ex.: faixa de tags) a anulam */
   --page-gutter: var(--space-7);
-  padding: 40px var(--page-gutter);
+  /* Espaço acima do topo; o topo fixo (.top) usa o mesmo valor por dentro */
+  --page-top: 40px;
+  padding: var(--page-top) var(--page-gutter) 40px;
   display: flex;
   flex-direction: column;
 }
@@ -17,6 +22,20 @@
 }
 
 .bottom { margin-top: var(--space-6); }
+
+/*
+ * Topo fixo: o nome e os idiomas ficam sempre visíveis durante o scroll. O fundo vai de ponta a ponta
+ * (anula a margem lateral e o espaço de cima da página) para o conteúdo passar por baixo sem aparecer.
+ * A margem inferior negativa compensa o padding de baixo, então o layout parado fica igual ao de antes.
+ */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin: calc(-1 * var(--page-top)) calc(-1 * var(--page-gutter)) calc(-1 * var(--space-3));
+  padding: var(--page-top) var(--page-gutter) var(--space-3);
+  background: var(--bg);
+}
 
 /* Nome do canto e nome grande da intro: mesmo estilo, só muda o tamanho (a animação da intro depende disso) */
 .name,
@@ -108,7 +127,7 @@
 
 /* Mobile */
 @media (max-width: 600px) {
-  .page { padding-block: var(--space-5); }
+  .page { --page-top: var(--space-5); padding-bottom: var(--space-5); }
 }
 
 /* Celulares estreitos (até 380px): margem lateral menor */

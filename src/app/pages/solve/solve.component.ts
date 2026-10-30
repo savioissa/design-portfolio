@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { IconComponent } from '../../ui/icon/icon.component';
-import { SoonDirective } from '../../ui/soon.directive';
 
 /**
  * Um ideograma por etapa, na ordem de solveSteps (o significado traduzido fica no i18n, em `meaning`):
@@ -13,7 +12,7 @@ const GLYPHS = ['基', '参', '建', '迭'];
 @Component({
   selector: 'app-solve',
   standalone: true,
-  imports: [RouterLink, IconComponent, SoonDirective],
+  imports: [RouterLink, IconComponent],
   templateUrl: './solve.component.html',
   styleUrl: './solve.component.scss',
 })

@@ -1,6 +1,6 @@
 import { Injectable, signal, computed, effect } from '@angular/core';
 
-export type Lang = 'pt' | 'en' | 'es';
+export type Lang = 'pt' | 'en';
 const KEY = 'lang';
 
 const DICT = {
@@ -36,11 +36,9 @@ const DICT = {
     thesisGrade: 'Grade of the final thesis I graduated with.',
     source: 'Source',
     campusAlt: 'Universidade Federal Fluminense campus, with students on the lawn',
-    visitor: 'Visitor',
     booksTitle: 'Books I recommend',
     booksIntro: '6 books that shaped the way I work and think about products and problems',
     close: 'Close',
-    buy: 'Where to buy',
     portraitsLabel: 'Three portraits of Sávio: a pencil sketch, a photo and a pixel art avatar',
     // Um item por parágrafo
     aboutText: [
@@ -54,7 +52,6 @@ const DICT = {
         period: '2023 – present',
         title: 'Junior UX Analyst',
         org: 'IClass · B2B software (FSM)',
-        logo: 'logos/iclass.png',
         text: 'I started as a UX intern and was hired as a Junior UX Analyst in October 2025.',
         tag: '',
         current: true,
@@ -63,7 +60,6 @@ const DICT = {
         period: '2022 – 2023',
         title: 'Quality Advisor',
         org: 'Papo Design · junior enterprise',
-        logo: 'logos/papo-design.png',
         text: 'Responsible for internal processes and for standardizing the delivery of design projects.',
         tag: '',
         current: false,
@@ -72,7 +68,6 @@ const DICT = {
         period: '2020 – 2022',
         title: 'Mobile game developer',
         org: 'Paranapanema Games',
-        logo: 'logos/paranapanema-games.jpg',
         text: 'Independent mobile game developer with over 10,000 downloads on the Play Store.',
         tag: '',
         current: false,
@@ -132,9 +127,6 @@ const DICT = {
         ],
       },
     ],
-    foundationAlt: 'Technical drawing of a foundation: a 2D floor plan of footings and beams that turns into an isometric view, with the column rebar rising, as the page scrolls',
-    composeAlt: 'Illustration: an abstract study of shapes in which independent elements, an orange disc, a translucent plane, an arc, a cylinder, a sphere and an organic shape, come closer, overlap and settle into a new structure',
-    graphAlt: 'Interactive illustration: a circular network of points that flash like neurons and connect as the pointer moves nearby',
   },
   pt: {
     title: ['Olá, eu sou Sávio Issa.', 'Product designer na', 'IClass Sistemas.'],
@@ -167,11 +159,9 @@ const DICT = {
     thesisGrade: 'Nota do TCC com que me formei.',
     source: 'Fonte',
     campusAlt: 'Campus da Universidade Federal Fluminense, com estudantes no gramado',
-    visitor: 'Visitante',
     booksTitle: 'Livros que indico',
     booksIntro: '6 livros que moldaram minha forma de trabalhar, pensar produto e problema',
     close: 'Fechar',
-    buy: 'Onde comprar',
     portraitsLabel: 'Três retratos do Sávio: um desenho a lápis, uma foto e um avatar em pixel art',
     aboutText: [
       'Sou Sávio Issa, designer de produto formado em Desenho Industrial pela Universidade Federal Fluminense, atualmente trabalhando em um produto B2B. Sou movido pela curiosidade e pela paixão de criar, pela vontade de entender como as coisas funcionam, descobrir novas possibilidades e transformar ideias em experiências que possam contribuir para um mundo melhor.',
@@ -183,7 +173,6 @@ const DICT = {
         period: '2023 – atual',
         title: 'Analista de UX Júnior',
         org: 'IClass · software B2B (FSM)',
-        logo: 'logos/iclass.png',
         text: 'Comecei como estagiário de UX e fui efetivado como Analista de UX Júnior em outubro de 2025.',
         tag: '',
         current: true,
@@ -192,7 +181,6 @@ const DICT = {
         period: '2022 – 2023',
         title: 'Assessor de Qualidade',
         org: 'Papo Design · empresa júnior',
-        logo: 'logos/papo-design.png',
         text: 'Responsável por processos internos e pela padronização das entregas de projetos de design.',
         tag: '',
         current: false,
@@ -201,7 +189,6 @@ const DICT = {
         period: '2020 – 2022',
         title: 'Desenvolvedor de jogos mobile',
         org: 'Paranapanema Games',
-        logo: 'logos/paranapanema-games.jpg',
         text: 'Desenvolvedor independente de jogos mobile com mais de 10 mil downloads na Play Store.',
         tag: '',
         current: false,
@@ -261,143 +248,11 @@ const DICT = {
         ],
       },
     ],
-    foundationAlt: 'Desenho técnico de uma fundação: a planta 2D de sapatas e vigas vira uma vista isométrica, com os arranques dos pilares subindo, conforme a página rola',
-    composeAlt: 'Ilustração: um estudo abstrato de formas em que elementos independentes, um disco laranja, um plano translúcido, um arco, um cilindro, uma esfera e uma forma orgânica, se aproximam, se sobrepõem e se assentam numa estrutura nova',
-    graphAlt: 'Ilustração interativa: uma rede circular de pontos que piscam como neurônios e se conectam quando o ponteiro passa por perto',
-  },
-  es: {
-    title: ['Hola, soy Sávio Issa.', 'Product designer en', 'IClass Sistemas.'],
-    subtitle: 'De Niterói, Río de Janeiro - Brasil',
-    soon: 'Próximamente',
-    about: 'Sobre mí',
-    skills: 'Habilidades y formación',
-    solve: 'Cómo resuelvo problemas',
-    projects: 'Proyectos',
-    themeLabel: 'Tema',
-    lightMode: 'Modo claro',
-    darkMode: 'Modo oscuro',
-    langLabel: 'Idioma',
-    home: 'Inicio',
-    education: 'Formación',
-    courses: 'Cursos',
-    certificates: 'Certificados',
-    viewCertificates: 'Ver certificados',
-    talks: 'Charlas',
-    mySkills: 'Mis habilidades',
-    interestsTitle: 'Áreas de interés',
-    quote: 'Se debe aprender mientras se vive.',
-    quoteAuthor: 'Séneca',
-    tools: 'Herramientas',
-    skillsList: 'Habilidades',
-    present: 'actualidad',
-    eduDegree: 'Licenciatura en Diseño Industrial',
-    eduFocus: 'Con enfoque en Diseño de Producto',
-    mecGrade: 'Nota de la carrera en la evaluación del MEC (Ministerio de Educación de Brasil), la máxima.',
-    thesisGrade: 'Nota del trabajo de fin de carrera con el que me gradué.',
-    source: 'Fuente',
-    campusAlt: 'Campus de la Universidade Federal Fluminense, con estudiantes en el césped',
-    visitor: 'Visitante',
-    booksTitle: 'Libros que recomiendo',
-    booksIntro: '6 libros que moldearon mi forma de trabajar y de pensar productos y problemas',
-    close: 'Cerrar',
-    buy: 'Dónde comprar',
-    portraitsLabel: 'Tres retratos de Sávio: un dibujo a lápiz, una foto y un avatar en pixel art',
-    aboutText: [
-      'Soy Sávio Issa, diseñador de producto graduado en Diseño Industrial por la Universidade Federal Fluminense, y actualmente trabajo en un producto B2B. Me mueven la curiosidad y la pasión por crear, las ganas de entender cómo funcionan las cosas, descubrir nuevas posibilidades y transformar ideas en experiencias que contribuyan a un mundo mejor.',
-      'Nunca me gustó limitarme a una sola etiqueta dentro del diseño. A lo largo de mi trayectoria, exploré distintos campos, hardware y software, diseño visual, prototipado, realidad aumentada, datos, siempre buscando nuevas formas de materializar ideas. Me gusta aprender haciendo, experimentar y construir. Por eso me enamoré del diseño: por la posibilidad de transformar la curiosidad en creación, aprendiendo en el camino.',
-    ],
-    timelineTitle: 'Trayectoria y experiencia',
-    timeline: [
-      {
-        period: '2023 – actualidad',
-        title: 'Analista de UX Junior',
-        org: 'IClass · software B2B (FSM)',
-        logo: 'logos/iclass.png',
-        text: 'Empecé como pasante de UX y fui contratado como Analista de UX Junior en octubre de 2025.',
-        tag: '',
-        current: true,
-      },
-      {
-        period: '2022 – 2023',
-        title: 'Asesor de Calidad',
-        org: 'Papo Design · empresa júnior',
-        logo: 'logos/papo-design.png',
-        text: 'Responsable de los procesos internos y de la estandarización de las entregas de proyectos de diseño.',
-        tag: '',
-        current: false,
-      },
-      {
-        period: '2020 – 2022',
-        title: 'Desarrollador de juegos móviles',
-        org: 'Paranapanema Games',
-        logo: 'logos/paranapanema-games.jpg',
-        text: 'Desarrollador independiente de juegos móviles con más de 10 mil descargas en Play Store.',
-        tag: '',
-        current: false,
-      },
-    ],
-    statsLabel: 'Destacados',
-    stats: [
-      { value: '+3', label: 'Años de experiencia en diseño de productos digitales' },
-      { value: '+5', label: 'Años de experiencia en diseño' },
-    ],
-    solveSteps: [
-      {
-        title: 'Cimientos',
-        meaning: 'base, cimiento',
-        quote: '',
-        author: '',
-        paragraphs: [
-          'Toda construcción empieza por lo que no se ve. Antes de que una solución tome forma, hay que entender el terreno sobre el que se va a sostener.',
-          'Empiezo investigando el contexto en el que ocurre el problema. Hablo con quienes conviven con él, analizo los datos disponibles y pongo distintas perspectivas lado a lado. Quiero entender qué pasa, por qué pasa y qué provoca.',
-          'Después, organizo los hallazgos, pongo a prueba hipótesis y separo síntomas de causas. Es en esta etapa donde el problema deja de ser una percepción y toma contorno. Lo que parecía una cuestión puede revelar otra necesidad. Una solución obvia puede perder sentido. Una restricción puede convertirse en oportunidad.',
-          'Para mí, definir bien el problema ya es parte de la solución. Un encuadre preciso genera mejores preguntas, y las mejores preguntas muestran qué caminos vale la pena explorar.',
-          'Los cimientos no son donde tengo todas las respuestas. Son donde creo las condiciones para decidir con conciencia durante el resto del proyecto.',
-        ],
-      },
-      {
-        title: 'Referencia',
-        meaning: 'referencia, consulta',
-        quote: '',
-        author: '',
-        paragraphs: [
-          'Con el problema delimitado, miro más allá de él. Busco proyectos, productos y soluciones que ya enfrentaron desafíos parecidos, incluso en contextos muy distintos.',
-          'Más que ver qué se hizo, quiero entender por qué se hizo así. ¿Qué decisiones se tomaron? ¿Qué necesidades las guiaron? ¿Qué funcionó? ¿Qué haría yo de otra forma?',
-          'Diseñar también es aprender de lo que otras personas ya descubrieron. No parto de cero, pero tampoco copio. Uso las referencias para cuestionar caminos conocidos y ver qué se puede aprovechar, transformar o hacer mejor.',
-        ],
-      },
-      {
-        title: 'Construcción',
-        meaning: 'construir, establecer',
-        quote: '',
-        author: '',
-        paragraphs: [
-          'Con el problema claro y un repertorio en mano, empiezo a transformar posibilidades en propuestas concretas.',
-          'Hago bocetos, prototipo y experimento alternativas. Me gusta sacar las ideas de lo abstracto temprano, porque es en contacto con la realidad que las suposiciones se confirman, se ajustan o caen.',
-          'Cada decisión abre algunos caminos y cierra otros. Por eso evalúo cada propuesta por su potencial y también por las necesidades de las personas, los límites del contexto y la viabilidad de lo que se está diseñando.',
-          'Este proceso rara vez sigue una línea recta. Probar una solución puede revelar un problema que todavía no había visto. Un descubrimiento puede llevarme de vuelta a las referencias o a los propios cimientos. Volver no es retrabajo. Es lo que mantiene la construcción en pie.',
-        ],
-      },
-      {
-        title: 'Iteración',
-        meaning: 'iteración, repetición',
-        quote: '',
-        author: '',
-        paragraphs: [
-          'Una vez que una solución llega al mundo, sigo cómo se usa. Observo comportamientos y analizo datos y comentarios.',
-          'Esas señales muestran qué está funcionando, qué necesita ajustes y qué todavía no se resolvió. A veces basta con un pequeño refinamiento. Otras veces, aparece un problema nuevo.',
-          'Lanzar no es el fin del proyecto. Es el inicio de una conversación con quienes usan el producto. Cada ciclo acerca la solución a lo que las personas necesitan y me enseña algo que llevo al próximo problema.',
-        ],
-      },
-    ],
-    foundationAlt: 'Dibujo técnico de unos cimientos: la planta 2D de zapatas y vigas se convierte en una vista isométrica, con las armaduras de los pilares subiendo, a medida que la página se desplaza',
-    composeAlt: 'Ilustración: un estudio abstracto de formas en el que elementos independientes, un disco naranja, un plano translúcido, un arco, un cilindro, una esfera y una forma orgánica, se acercan, se superponen y se asientan en una estructura nueva',
-    graphAlt: 'Ilustración interactiva: una red circular de puntos que parpadean como neuronas y se conectan cuando el puntero pasa cerca',
   },
 } as const;
 
 /** Atributo lang do <html> para cada idioma (leitores de tela e hifenização usam) */
-const HTML_LANG: Record<Lang, string> = { pt: 'pt-BR', en: 'en', es: 'es' };
+const HTML_LANG: Record<Lang, string> = { pt: 'pt-BR', en: 'en' };
 
 export type DictKey = Exclude<keyof (typeof DICT)['en'], 'title' | 'aboutText' | 'timeline' | 'stats' | 'solveSteps'>;
 
@@ -429,7 +284,7 @@ export class I18nService {
   private initial(): Lang {
     try {
       const saved = localStorage.getItem(KEY);
-      // O espanhol está fora do seletor: quem o tinha salvo volta para o português
+      // Qualquer outro valor salvo (ex.: o espanhol, que existia antes) volta para o português
       if (saved === 'pt' || saved === 'en') return saved;
     } catch {}
     return 'pt';

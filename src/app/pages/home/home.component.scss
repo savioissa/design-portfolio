@@ -73,8 +73,10 @@
   .item { font-size: var(--text-lg); line-height: var(--leading-lg); }
 }
 
-/* Mobile: itens do menu com área de toque de 44px */
+/* Mobile: itens do menu com área de toque de 44px e menos respiro vertical, para a home caber na altura da tela sem scroll */
 @media (max-width: 600px) {
+  .hero { padding-block: var(--space-4); }
+
   .menu { gap: var(--space-2); }
 
   .item { padding: var(--space-2) 0; }

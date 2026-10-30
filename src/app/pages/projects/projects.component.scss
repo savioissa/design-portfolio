@@ -1,0 +1,135 @@
+/* Ocupa o espaço abaixo do topo dentro de .page */
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo jornal (seções e rótulos em styles.scss), no mesmo tom das outras páginas */
+.projects {
+  flex: 1;
+  padding-top: var(--space-6);
+}
+
+/*
+ * Grade de cards separados por fios finos, como na referência. Cada card desenha o fio à esquerda e em cima
+ * (box-shadow). A grade sai --bleed para os lados (o conteúdo da primeira e da última coluna alinha com o rótulo
+ * e a borda da seção) e o clip-path corta esse excesso, os fios da primeira coluna e os da primeira linha:
+ * sem borda externa e com qualquer número de colunas.
+ */
+.grid {
+  --cols: 4;
+  --bleed: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  margin: 0 calc(-1 * var(--bleed));
+  padding: 0;
+  list-style: none;
+  /* 1px a mais em cima: evita que o fio da primeira linha apareça por arredondamento */
+  clip-path: inset(1px var(--bleed) 0);
+
+  > li { box-shadow: -1px 0 0 var(--border), 0 -1px 0 var(--border); }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  height: 100%;
+  padding: var(--space-4) var(--space-4) var(--space-6);
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+
+  /* Anel de foco por dentro da imagem: nas bordas do card ele cairia na área cortada pelo clip-path */
+  &:focus-visible { outline: none; }
+  &:focus-visible .thumb { outline: 2px solid var(--accent); outline-offset: -2px; }
+}
+
+/* Placeholder cinza até as imagens chegarem; com imagem, ela cobre o espaço */
+.thumb {
+  display: block;
+  aspect-ratio: 11 / 5;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--text) 9%, var(--bg));
+  transition: background 0.3s ease;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.3s ease;
+  }
+}
+
+.name {
+  --icon-size: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
+}
+
+/* Tags das áreas de conhecimento: pílulas pequenas com contorno, logo abaixo do título */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: calc(var(--space-2) - var(--space-4));
+}
+
+.tag {
+  padding: 2px var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  line-height: var(--leading-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.arrow {
+  flex: none;
+  transition: translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.card:hover,
+.card:focus-visible {
+  .thumb { background: color-mix(in srgb, var(--text) 14%, var(--bg)); }
+  .thumb img { scale: 1.04; }
+  .arrow { translate: 4px 0; }
+}
+
+/* Projeto ainda sem página ("Em breve", via appSoon): a miniatura fica acinzentada junto com o chip */
+.card[aria-disabled="true"]:hover,
+.card[aria-disabled="true"]:focus-visible {
+  .thumb img { filter: grayscale(0.85) opacity(0.8); }
+}
+
+@media (max-width: 1200px) {
+  .grid { --cols: 3; }
+}
+
+@media (max-width: 900px) {
+  .grid { --cols: 2; }
+}
+
+@media (max-width: 600px) {
+  .grid { --cols: 1; --bleed: 0px; }
+
+  .card { padding: var(--space-4) 0 var(--space-5); }
+
+  .name { font-size: var(--text-base); line-height: var(--leading-base); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumb, .thumb img, .arrow { transition: none; }
+}

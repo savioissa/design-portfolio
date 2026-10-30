@@ -4,6 +4,7 @@ import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router
 import { filter, map } from 'rxjs';
 import { ThemeSwitchComponent } from './ui/theme-switch.component';
 import { LangSelectComponent } from './ui/lang-select.component';
+import { CursorDotComponent } from './ui/cursor-dot.component';
 import { IntroService } from './services/intro.service';
 import { SITE_LINKS } from './config/site.config';
 
@@ -15,7 +16,7 @@ const INTRO_MOVE = 900;
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, ThemeSwitchComponent, LangSelectComponent],
+  imports: [RouterOutlet, RouterLink, ThemeSwitchComponent, LangSelectComponent, CursorDotComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

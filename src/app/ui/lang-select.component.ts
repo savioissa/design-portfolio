@@ -43,7 +43,6 @@ import { I18nService, Lang } from '../services/i18n.service';
 })
 export class LangSelectComponent {
   readonly i18n = inject(I18nService);
-  /** O espanhol segue traduzido no i18n, mas fica fora do seletor. */
   readonly options: { value: Lang; label: string; name: string }[] = [
     { value: 'pt', label: 'PT', name: 'Português' },
     { value: 'en', label: 'EN', name: 'English' },

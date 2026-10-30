@@ -32,13 +32,13 @@
   }
 
   <nav class="pager" aria-label="Menu">
-    <a class="pager-link" routerLink="/">
+    <a class="pager-link" routerLink="/habilidades-e-formacao">
       <app-icon name="arrow-left-md" />
-      {{ i18n.t('home') }}
+      {{ i18n.t('skills') }}
     </a>
-    <button type="button" class="pager-link" appSoon>
+    <a class="pager-link" routerLink="/projetos">
       {{ i18n.t('projects') }}
       <app-icon name="arrow-right-md" />
-    </button>
+    </a>
   </nav>
 </main>
