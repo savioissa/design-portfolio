@@ -5,7 +5,7 @@ import type { Lang } from '../services/i18n.service';
  * Um projeto pode estar em mais de uma seção ("Projetos selecionados" é um destaque das categorias de baixo);
  * as seções só apontam para o slug, então título, imagem e tags ficam num lugar só.
  * `image` é opcional: sem ela, o card mostra um placeholder cinza. Use um caminho em public/, ex.: 'projects/tcc.jpg'.
- * O card corta a imagem na proporção 11:5; `imagePosition` escolhe que parte fica visível.
+ * O card corta a imagem na proporção 11:5.
  * `tags` são as áreas de conhecimento do projeto, na ordem em que aparecem (nomes e traduções em PROJECT_TAGS).
  * `route` é opcional: sem ela, o card mostra o chip "Em breve" no hover.
  */
@@ -26,7 +26,7 @@ export const PROJECT_TAGS = {
   'criacao-de-conteudo': { pt: 'Criação de conteúdo', en: 'Content creation' },
   'design-system': { pt: 'Design system', en: 'Design system' },
   'fluxo-com-ia': { pt: 'Fluxo com IA', en: 'AI workflows' },
-  dados: { pt: 'Dados', en: 'Data' },
+  dataviz: { pt: 'Dataviz', en: 'Dataviz' },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type ProjectTag = keyof typeof PROJECT_TAGS;
@@ -35,8 +35,6 @@ export interface Project {
   title: Record<Lang, string>;
   tags: ProjectTag[];
   image?: string;
-  /** Enquadramento da imagem no card (object-position), ex.: '50% 20%'. Padrão: centro */
-  imagePosition?: string;
   route?: string;
 }
 
@@ -53,21 +51,22 @@ export const PROJECTS = {
     image: 'projects/semende-2023.jpg',
   },
   'painel-de-os': {
-    title: { pt: 'Case painel de OS', en: 'Work order panel case' },
-    tags: ['ui-ux'],
+    title: { pt: 'Painel de Serviço', en: 'Service panel' },
+    tags: ['ui-ux', 'dataviz'],
+    image: 'projects/painel-de-os.jpg',
   },
   tcc: {
-    title: { pt: 'TCC', en: 'Undergraduate thesis' },
+    title: { pt: 'Trabalho de conclusão de curso', en: 'Undergraduate thesis' },
     tags: ['hardware', 'arduino', 'codigo', 'design-industrial'],
     image: 'projects/tcc.jpg',
-    imagePosition: '50% 20%',
   },
   'financas-web': {
-    title: { pt: 'Finanças web', en: 'Finance web app' },
+    title: { pt: 'Web-app para finanças pessoais', en: 'Personal finance web app' },
     tags: ['ui-ux', 'sql', 'design-engineer'],
+    image: 'projects/financas-web.jpg',
   },
   'baralho-de-di': {
-    title: { pt: 'Baralho de DI', en: 'Industrial Design card deck' },
+    title: { pt: 'Projeto: Baralho de design', en: 'Project: Design card deck' },
     tags: ['design-grafico'],
     image: 'projects/baralho-de-di.jpg',
   },
@@ -75,27 +74,26 @@ export const PROJECTS = {
     title: { pt: 'Game design', en: 'Game design' },
     tags: ['game-design', 'ui-ux', 'marketing', 'codigo'],
     image: 'projects/game-design.jpg',
-    imagePosition: '50% 65%',
   },
   'comunidade-criativa': {
     title: { pt: 'Comunidade criativa', en: 'Creative community' },
     tags: ['design-grafico', 'criacao-de-conteudo'],
+    image: 'projects/comunidade-criativa.jpg',
   },
   'linguagem-de-design': {
     title: { pt: 'Linguagem de design e design tokens', en: 'Design language and design tokens' },
     tags: ['design-system', 'ui-ux'],
+    image: 'projects/linguagem-de-design.jpg',
   },
   'reformulacao-do-sistema': {
     title: { pt: 'Reformulação do sistema', en: 'System redesign' },
     tags: ['ui-ux'],
+    image: 'projects/reformulacao-do-sistema.jpg',
   },
   'ferramenta-de-prototipacao': {
     title: { pt: 'Ferramenta de prototipação', en: 'Prototyping tool' },
     tags: ['fluxo-com-ia'],
-  },
-  'rotina-de-dados': {
-    title: { pt: 'Rotina de dados', en: 'Data routine' },
-    tags: ['dados', 'fluxo-com-ia'],
+    image: 'projects/ferramenta-de-prototipacao.jpg',
   },
 } satisfies Record<string, Project>;
 
@@ -119,7 +117,7 @@ export const PROJECT_SECTIONS: ProjectSection[] = [
   },
   {
     id: 'ferramentas-com-ia',
-    title: { pt: 'Ferramentas com IA', en: 'AI tools' },
-    projects: ['financas-web', 'ferramenta-de-prototipacao', 'rotina-de-dados'],
+    title: { pt: 'Experimentações com IA', en: 'AI experiments' },
+    projects: ['financas-web', 'ferramenta-de-prototipacao'],
   },
 ];

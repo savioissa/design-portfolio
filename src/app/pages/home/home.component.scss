@@ -22,17 +22,12 @@
 }
 
 .item {
-  padding: 0;
-  border: 0;
-  background: none;
   font-family: var(--font-serif);
   font-weight: var(--font-weight-serif-regular);
   font-size: var(--text-subtitle);
   line-height: var(--leading-subtitle);
-  text-align: inherit;
   text-decoration: none;
   color: var(--text);
-  cursor: pointer;
   transition:
     transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
     color 0.2s ease;

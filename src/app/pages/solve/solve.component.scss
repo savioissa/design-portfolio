@@ -24,22 +24,6 @@
 
   p { margin: 0; }
   p + p { margin-top: var(--space-4); }
-
-  /* Destaques dos parágrafos: o <strong> vem do i18n via innerHTML, sem o atributo do componente */
-  ::ng-deep strong {
-    font-weight: var(--font-weight-serif);
-    color: var(--text);
-  }
-}
-
-.quote {
-  margin: 0 0 var(--space-4);
-  font-family: var(--font-serif);
-  color: var(--text);
-
-  blockquote { margin: 0; }
-  p { margin: 0; font-size: var(--text-xl); line-height: var(--leading-xl); }
-  figcaption { margin-top: var(--space-2); font-family: var(--font-sans); font-size: var(--text-xs); }
 }
 
 /* O ideograma fica centralizado na altura do texto (a coluna lateral estica até o fim dele) */

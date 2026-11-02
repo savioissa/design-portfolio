@@ -53,7 +53,6 @@ const DICT = {
         title: 'Junior UX Analyst',
         org: 'IClass · B2B software (FSM)',
         text: 'I started as a UX intern and was hired as a Junior UX Analyst in October 2025.',
-        tag: '',
         current: true,
       },
       {
@@ -61,7 +60,6 @@ const DICT = {
         title: 'Quality Advisor',
         org: 'Papo Design · junior enterprise',
         text: 'Responsible for internal processes and for standardizing the delivery of design projects.',
-        tag: '',
         current: false,
       },
       {
@@ -69,7 +67,6 @@ const DICT = {
         title: 'Mobile game developer',
         org: 'Paranapanema Games',
         text: 'Independent mobile game developer with over 10,000 downloads on the Play Store.',
-        tag: '',
         current: false,
       },
     ],
@@ -82,8 +79,6 @@ const DICT = {
       {
         title: 'Foundation',
         meaning: 'base, foundation',
-        quote: '',
-        author: '',
         paragraphs: [
           'Every building starts with what you can’t see. Before a solution takes shape, you need to understand the ground it will stand on.',
           'I start by investigating the context in which the problem happens. I talk to the people who live with it, analyze the available data and put different perspectives side by side. I want to understand what happens, why it happens and what it causes.',
@@ -95,8 +90,6 @@ const DICT = {
       {
         title: 'Reference',
         meaning: 'reference, consultation',
-        quote: '',
-        author: '',
         paragraphs: [
           'With the problem scoped, I look beyond it. I search for projects, products and solutions that have faced similar challenges, including in very different contexts.',
           'More than seeing what was done, I want to understand why it was done that way. What decisions were made? What needs guided them? What worked? What would I do differently?',
@@ -106,8 +99,6 @@ const DICT = {
       {
         title: 'Building',
         meaning: 'build, establish',
-        quote: '',
-        author: '',
         paragraphs: [
           'With a clear problem and a repertoire in hand, I start turning possibilities into concrete proposals.',
           'I sketch, prototype and experiment with alternatives. I like to take ideas out of the abstract early, because it’s in contact with reality that assumptions are confirmed, adjusted or dropped.',
@@ -118,8 +109,6 @@ const DICT = {
       {
         title: 'Iteration',
         meaning: 'iteration, repetition',
-        quote: '',
-        author: '',
         paragraphs: [
           'Once a solution reaches the world, I follow how it’s used. I observe behaviors and analyze data and feedback.',
           'These signals show what’s working, what needs adjusting and what hasn’t been solved yet. Sometimes a small refinement is enough. Other times, a new problem appears.',
@@ -174,7 +163,6 @@ const DICT = {
         title: 'Analista de UX Júnior',
         org: 'IClass · software B2B (FSM)',
         text: 'Comecei como estagiário de UX e fui efetivado como Analista de UX Júnior em outubro de 2025.',
-        tag: '',
         current: true,
       },
       {
@@ -182,7 +170,6 @@ const DICT = {
         title: 'Assessor de Qualidade',
         org: 'Papo Design · empresa júnior',
         text: 'Responsável por processos internos e pela padronização das entregas de projetos de design.',
-        tag: '',
         current: false,
       },
       {
@@ -190,7 +177,6 @@ const DICT = {
         title: 'Desenvolvedor de jogos mobile',
         org: 'Paranapanema Games',
         text: 'Desenvolvedor independente de jogos mobile com mais de 10 mil downloads na Play Store.',
-        tag: '',
         current: false,
       },
     ],
@@ -203,8 +189,6 @@ const DICT = {
       {
         title: 'Fundação',
         meaning: 'base, fundamento',
-        quote: '',
-        author: '',
         paragraphs: [
           'Toda construção começa pelo que não se vê. Antes de uma solução ganhar forma, é preciso entender o terreno onde ela vai ficar de pé.',
           'Começo investigando o contexto em que o problema acontece. Converso com quem convive com ele, analiso os dados disponíveis e coloco diferentes perspectivas lado a lado. Quero entender o que acontece, por que acontece e o que isso provoca.',
@@ -216,8 +200,6 @@ const DICT = {
       {
         title: 'Referência',
         meaning: 'referência, consulta',
-        quote: '',
-        author: '',
         paragraphs: [
           'Com o problema delimitado, olho para fora dele. Busco projetos, produtos e soluções que já enfrentaram desafios parecidos, inclusive em contextos bem diferentes.',
           'Mais do que ver o que foi feito, quero entender por que foi feito assim. Que decisões foram tomadas? Que necessidades as orientaram? O que funcionou? O que eu faria diferente?',
@@ -227,8 +209,6 @@ const DICT = {
       {
         title: 'Construção',
         meaning: 'construir, estabelecer',
-        quote: '',
-        author: '',
         paragraphs: [
           'Com o problema claro e um repertório em mãos, começo a transformar possibilidades em propostas concretas.',
           'Esboço, prototipo e experimento alternativas. Gosto de tirar as ideias da abstração cedo, porque é no contato com a realidade que as suposições se confirmam, se ajustam ou caem.',
@@ -239,8 +219,6 @@ const DICT = {
       {
         title: 'Iteração',
         meaning: 'iteração, repetição',
-        quote: '',
-        author: '',
         paragraphs: [
           'Depois que uma solução chega ao mundo, acompanho como ela é usada. Observo comportamentos, analiso dados e feedbacks.',
           'Esses sinais mostram o que está funcionando, o que precisa de ajuste e o que ainda não foi resolvido. Às vezes basta um pequeno refinamento. Outras vezes, aparece um problema novo.',

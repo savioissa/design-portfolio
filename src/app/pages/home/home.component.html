@@ -12,11 +12,7 @@
   @if (!intro.playing()) {
     <nav class="menu" aria-label="Menu">
       @for (item of menu; track item.key) {
-        @if (item.route) {
-          <a class="item" [routerLink]="item.route">{{ i18n.t(item.key) }}</a>
-        } @else {
-          <button type="button" class="item" appSoon>{{ i18n.t(item.key) }}</button>
-        }
+        <a class="item" [routerLink]="item.route">{{ i18n.t(item.key) }}</a>
       }
     </nav>
   }

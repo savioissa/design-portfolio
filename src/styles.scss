@@ -235,11 +235,6 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  /* Também usado em <button> (página que ainda não existe, com appSoon) */
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
   font-family: var(--font-serif);
   font-weight: var(--font-weight-serif-regular);
   font-size: var(--text-base);
@@ -314,6 +309,3 @@ html:has(dialog[open]) .cursor-dot { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .cursor-dot { transition: opacity 0.2s ease; }
 }
-
-/* Links para âncoras (#...) param abaixo do topo fixo, em vez de escondidos atrás dele */
-html { scroll-padding-top: 6rem; }

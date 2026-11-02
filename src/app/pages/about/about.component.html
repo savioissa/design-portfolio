@@ -33,12 +33,7 @@
       <ol class="events">
         @for (event of i18n.timeline(); track $index) {
           <li class="event" [class.current]="event.current">
-            <p class="period">
-              {{ event.period }}
-              @if (event.tag) {
-                · {{ event.tag }}
-              }
-            </p>
+            <p class="period">{{ event.period }}</p>
             <div>
               <h3 class="role">{{ event.title }}</h3>
               <p class="org">{{ event.org }}</p>
